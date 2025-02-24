@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 header {
     background-color: #f8f9fa;
     padding: 20px;
@@ -8,11 +13,19 @@ header {
     font-family: Poppins;
 }
 
+.parent {
+    margin-bottom: 1.5em;
+}
+
 header h1 {
     margin: 0;
-    font-size: 3em;
-    margin-bottom: 0.25em;
-    font-weight: 300;
+    font-size: 5em;
+    margin-bottom: 0em;
+    font-weight: 800;
+    font-family: Playfair Display;
+    text-transform: uppercase;
+    letter-spacing: -4.4px;
+
 }
 
 header nav {
@@ -41,6 +54,10 @@ header nav a {
     padding: 0 100;
 }
 
+h2 {
+    /* TODO LINA ADD MARGIN */
+}
+
 .portfolio-items {
     display: flex;
     flex-wrap: wrap;
@@ -59,4 +76,50 @@ header nav a {
 
 .portfolio-image {
     border-radius: 10px;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 30px;
+    color: #333;
+    margin-top: 2em;    
+    font-family: Poppins;
+    font-weight: 300;
+}
+
+.description {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+.description-text {
+    display: inline-block;
+    margin: 0;
+    /* max-width: 100%; */
+    /* width: 100%; */
+    /* padding-left: 1.25em;
+    padding-right: .75em; */
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    z-index: 10;
+    position: relative;
+    background-color: #f8f9fa;
+    font-family: Montserrat;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: .5em;
+}
+
+
+.description:after {
+    background: #3d3e40;
+    bottom: 50%;
+    content: "";
+    height: 2px;
+    width: 100%;
+    z-index: 5;
+    display: inline-block;
+    position: absolute;
+    left: 0;
 }
