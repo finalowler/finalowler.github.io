@@ -1,0 +1,62 @@
+header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Poppins;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+    margin-bottom: 0.25em;
+    font-weight: 300;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+}
+
+header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.border-gradient {
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        white 0%,
+        rgb(21, 184, 13) 20%,
+        rgb(7, 53, 216) 90%,
+        white 100%
+    );
+}
+
+.container {
+    padding: 0 100;
+}
+
+.portfolio-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.portfolio-item {
+    width: 300px;
+    margin: 0 50 0 0;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+}
+
+.portfolio-image {
+    border-radius: 10px;
+}
