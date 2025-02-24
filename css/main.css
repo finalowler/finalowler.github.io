@@ -54,7 +54,7 @@ header nav a {
     padding: 0 100;
 }
 
-.content-wrapper {
+.section {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Align items at the top */
@@ -81,7 +81,7 @@ h4 {
     margin: 20 0 40 0;
 }
 
-.portfolio-items {
+.right-side {
     display: flex;
     flex-direction: column; /* Align items in a column */
     align-items: flex-end; /* Align items to the right */
@@ -90,11 +90,12 @@ h4 {
 
 .portfolio-item {
     width: 450px; /* Increase width to 1.5x the original size */
-    margin: 0 50px 0 0;
+    margin: 0 20 20;
 }
 
 .portfolio-item img {
     width: 100%;
+    min-width: 400px;
     height: auto;
 }
 
