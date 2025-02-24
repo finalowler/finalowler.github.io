@@ -55,26 +55,19 @@ header nav a {
 }
 
 h2 {
-    margin: 20 0;
-    font-family: Montserrat;
-    font-weight: 400;
-}
-
-h3 {
-    margin: 10 0;
-    font-family: Montserrat;
-    font-weight: 200;
+    /* TODO LINA ADD MARGIN */
 }
 
 .portfolio-items {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    flex-direction: column; /* Align items in a column */
+    align-items: flex-end; /* Align items to the right */
     margin-top: 20px;
 }
+
 .portfolio-item {
     width: 300px;
-    margin: 0 75 0 0;
+    margin: 0 50 0 0;
 }
 
 .portfolio-item img {
@@ -83,7 +76,7 @@ h3 {
 }
 
 .portfolio-image {
-    border-radius: 13px;
+    border-radius: 10px;
 }
 
 .footer {
