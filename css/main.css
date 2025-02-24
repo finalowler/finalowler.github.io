@@ -55,7 +55,15 @@ header nav a {
 }
 
 h2 {
-    /* TODO LINA ADD MARGIN */
+    margin: 20 0;
+    font-family: Montserrat;
+    font-weight: 400;
+}
+
+h3 {
+    margin: 10 0;
+    font-family: Montserrat;
+    font-weight: 200;
 }
 
 .portfolio-items {
