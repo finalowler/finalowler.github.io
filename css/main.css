@@ -235,10 +235,9 @@ h4 {
 }
 
 .footer {
-    background: linear-gradient(45deg, #bbe7de, #89bdf0);;
+    background: #f8f9fa;
     padding: 10px;
-    color: #333;
-    /* margin-top: 2em;     */
+    color: #333;    
     font-family: Poppins;
     font-weight: 300;
     /* position: fixed;
@@ -249,7 +248,7 @@ h4 {
 
 .footer p {
     font-size: 12px;
-    margin: 0 auto;
+    margin: 20 auto;
     padding: 0;
     line-height: 10px;
     max-width: 1000px;
