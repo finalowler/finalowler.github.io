@@ -39,6 +39,10 @@ header {
     margin-bottom: 1.5em;
 }
 
+.parent a {
+    text-decoration: none;
+}
+
 header h1 {
     margin: 0 0em;
     font-size: 6em;
@@ -50,13 +54,37 @@ header h1 {
     /* background-image: linear-gradient(45deg, rgb(45, 194, 208), rgb(10, 126, 113)); */
     /* color: transparent; */
     background-clip: text;
-    transition: 4s ease-out;
+    transition: 0.25s ease-out;
+    display: inline-block;
 }
 
-header h1:hover {
+.top-bar {
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: white;
+    margin: 20px 0 0 20px;
+    display: block;
+}
+
+
+
+.top-bar h1 {
+    font-family: Liebeheide;
+    font-size: 3em;
+    display: inline;
+    transition: 0.25s linear;
+    /* padding: 0.2em 0.5em; */
+}
+
+.top-bar h1:hover {
+    /* box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2); */
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* header h1:hover {
     /* background-image: linear-gradient(45deg, rgb(206, 36, 155), rgb(219, 185, 18));
     transform: rotate(5deg) scale(1.2); */
-}
 
 header nav {
     display: flex;
