@@ -127,9 +127,20 @@ header nav a {
 
 .intro {
     flex: 1;
-    margin: 70px 0 0 0;
-    min-height: calc(100% - 200px);
-    max-width: 480px; 
+    /* margin: 70px 0 0 0; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+    min-height: 0px;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1060px) {
+    .intro {
+        margin-left: 0;
+        min-height: calc(100% - 200px);
+    }
 }
 
 .intro h2 {
@@ -332,6 +343,7 @@ h4 {
     bottom: 0; */
     width: 100%;
     z-index: -1;
+    cursor:url(/img/waving_hand.png), auto;
 }
 
 .footer * {
@@ -433,13 +445,17 @@ h4 {
 
 .project-image {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
 }
 
 .project-image img, .project-image video {
     width: 100%;
     margin: 0 auto;
     border-radius: 15px;
-    transition: 1s ease-in
+    transition: 1s ease-in;
+    display: block;
 }
 
 .project-image img:hover {
@@ -454,9 +470,13 @@ h4 {
     justify-content: space-between;
 }
 
-.project-text-left {
-    
+.vertical {
+    max-width: 300px;
 }
+
+/* .project-text-left {
+    
+} */
 
 .project-text-right {
     width: 50%;
@@ -472,3 +492,4 @@ h4 {
     font-size: 0.9em;
     color: #666;
 }
+
