@@ -14,6 +14,15 @@
         </script>
     </head>
     <body>
+        <div class="shadow hidden" onclick="hideModal();">
+        </div>
+        <div class="chat-modal hidden">
+            <form id="chat-form">
+                <label>Chat with LinaGPT</label>
+                <input class="chat-input" placeholder="What do you want to hire Lina for?"/>
+                <p id="chat-response"></p>
+            </form>
+        </div>
         <header>
             <div class="parent">
                 <h1>Lina&nbsp;Fowler</h1>
@@ -22,6 +31,10 @@
                 </div>
             </div>
         </header>
+        <div class="chat">
+            <button onclick="showModal();">✨ LinaGPT</button>
+        </div>
+        
             <!-- <div class="go-down">
                 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="53px" height="20px" viewBox="0 0 53 20" enable-background="new 0 0 53 20" xml:space="preserve">
                     <g id="Ebene_3"></g>
@@ -139,5 +152,6 @@
         <div class="footer">
             <p>Copyright Lina Fowler 2025</p>
         </div>
+        <script src="/js/main.js"></script>
     </body>
 </html>
