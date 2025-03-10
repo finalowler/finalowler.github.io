@@ -1,6 +1,6 @@
 const makeRequest = async (text) => {
     try {
-        const response = await fetch("http://35.193.238.101:5001/query", {
+        const response = await fetch("https://joint-sloth-smoothly.ngrok-free.app/query", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
