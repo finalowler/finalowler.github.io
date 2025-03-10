@@ -23,6 +23,8 @@ const setup = () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const text = input.value;
+        const headshot = document.querySelector(".headshot");
+        headshot.classList.add("hidden");
         document.querySelector('#chat-response').textContent = "Loading...";
         const data = await makeRequest(text);
         const paragraph = document.querySelector('#chat-response');
@@ -31,6 +33,7 @@ const setup = () => {
         const updatedText = answer.replace(regex, (match, p1) => {
             return `<a href="https://linafowler.com/pages/${project}"}" target="_blank">${p1}</a>`;
         });
+        headshot.classList.remove("hidden");
         paragraph.innerHTML = updatedText;
     });
 };

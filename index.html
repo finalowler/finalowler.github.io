@@ -17,10 +17,16 @@
         <div class="shadow hidden" onclick="hideModal();">
         </div>
         <div class="chat-modal hidden">
+            <div class="x" onclick="hideModal();">
+                <p>&times;</p>
+            </div>
             <form id="chat-form">
                 <label>Chat with LinaGPT</label>
                 <input class="chat-input" placeholder="What do you want to hire Lina for?"/>
-                <p id="chat-response"></p>
+                <div class="chat-response-area">
+                    <img class="headshot hidden" src="/img/lina_headshot.jpeg"/>
+                    <p id="chat-response"></p>
+                </div>
             </form>
         </div>
         <header>

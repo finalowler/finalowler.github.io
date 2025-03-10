@@ -599,6 +599,18 @@ h4 {
     transform: translateX(calc(max(100%, 400px)));
 }
 
+.chat-modal .x p {
+    font-size: 3em;
+    color: #555;
+    line-height: 0.6em;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.chat-modal .x p:hover {
+    color: #999;
+}
+
 .chat-input {
     border: 1px solid #333;
     width: 100%;
@@ -627,7 +639,7 @@ h4 {
     0px 0px 25px white, 
     0px 0px 35px white, 
     0px 0px 45px white;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     transition: 0.2s linear;
 }
 
@@ -635,6 +647,11 @@ h4 {
     padding: 0;
 }
 
+.chat-response-area {
+    display: flex;
+    flex-direction: row;
+    
+}
 
 #chat-form {
     box-sizing: border-box;
@@ -654,4 +671,15 @@ h4 {
     font-size: 1.5em;
     font-weight: 500;
     margin: 1em 0 1em 0;
+}
+
+.headshot.hidden {
+    display: none;
+}
+
+.headshot {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    margin-right: 10px;
 }
