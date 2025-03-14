@@ -580,7 +580,7 @@ h4 {
 
 .shadow.hidden {
     opacity: 0;
-    z-index: 0;
+    z-index: -1;
 }
 
 .chat-modal {
