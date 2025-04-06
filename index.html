@@ -22,7 +22,17 @@
             </div>
             <form id="chat-form">
                 <label>Chat with LinaGPT</label>
-                <input class="chat-input" placeholder="What do you want to hire Lina for?"/>
+                <div class="chat-input-container">
+                    <input class="chat-input" placeholder="I want to hire Lina for..."/>
+                    <label>
+                        <button class="submit-button-fake">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+                        </button>    
+                        <input type="submit" value=""/>
+                    </label>
+                    
+                </div>
                 <div class="chat-response-area">
                     <img class="headshot hidden" src="/img/lina_headshot.jpeg"/>
                     <p id="chat-response"></p>
@@ -38,7 +48,7 @@
             </div>
         </header>
         <div class="chat">
-            <button onclick="showModal();">✨ LinaGPT</button>
+            <button onclick="showModal();">✨<span class="linagpt">&nbsp;LinaGPT</span></span></button>
         </div>
         
             <!-- <div class="go-down">
@@ -53,7 +63,7 @@
         <div class="container">
             <div class="intro">
                 <h2>
-                    I'm <span class="name">Lina Fowler</span>.
+                    <span class="name-sentence">I'm <span class="name">Lina Fowler</span>.</span>
                     I'm a multidisciplinary product designer with an M.S. in Sustainability Systems, B.S. in Product Design, and B.A. in Political Science from Stanford University. 
                 </h2>
                 <h2>
@@ -160,4 +170,4 @@
         </div>
         <script src="/js/main.js"></script>
     </body>
-</html>
+</html>>
