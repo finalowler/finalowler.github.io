@@ -353,7 +353,7 @@ h4 {
 }
 
 
-.portfolio-item img {
+.portfolio-item img, .portfolio-item video {
     width: 100%;
     max-height: 600px;
     object-fit: contain;
