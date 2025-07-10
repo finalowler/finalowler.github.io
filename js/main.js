@@ -52,4 +52,77 @@ const showModal = () => {
     modal.classList.remove("hidden");
 }
 
-document.addEventListener('DOMContentLoaded', setup);
+const initTheme = () => {
+    // Check for saved theme preference or default to system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    } else if (systemDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+};
+
+const toggleTheme = () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+};
+
+// Listen for system theme changes
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    }
+});
+
+const createStarfield = () => {
+    const starfield = document.getElementById('starfield');
+    const numStars = 100;
+    
+    // Clear existing stars
+    starfield.innerHTML = '';
+    
+    for (let i = 0; i < numStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Random size
+        const sizes = ['small', 'medium', 'large'];
+        const weights = [0.7, 0.25, 0.05]; // Most stars are small
+        let randomSize = Math.random();
+        let sizeClass = 'small';
+        
+        if (randomSize > weights[0]) {
+            sizeClass = randomSize > weights[0] + weights[1] ? 'large' : 'medium';
+        }
+        
+        star.classList.add(sizeClass);
+        
+        // Random position
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        
+        // Random animation delay
+        star.style.animationDelay = Math.random() * 4 + 's';
+        
+        // Some stars drift slowly
+        if (Math.random() < 0.3) {
+            star.classList.add('drifting');
+            star.style.animationDelay = Math.random() * 20 + 's';
+        }
+        
+        starfield.appendChild(star);
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    setup();
+    createStarfield();
+});

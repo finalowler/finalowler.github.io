@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Amatic+SC:wght@400;700&display=swap');
 
 @font-face {
     font-family: Liebeheide;
@@ -17,12 +17,55 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --text-secondary: #333333;
+    --text-muted: #666666;
+    --text-light: #777777;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.2);
+    --footer-bg: #f8f9fa;
+    --chat-bg: #ffffff;
+    --chat-border: #333333;
+    --chat-button-bg: #ffffff;
+    --chat-button-color: #1c2ed0;
+    --chat-button-hover: #4f5ddd;
+    --glow-color: white;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0f1419;
+    --text-color: #ffffff;
+    --text-secondary: #e0e0e0;
+    --text-muted: #cccccc;
+    --text-light: #aaaaaa;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+    --footer-bg: #1a1a1a;
+    --chat-bg: #1a1a1a;
+    --chat-border: #555555;
+    --chat-button-bg: #1a1a1a;
+    --chat-button-color: #6b7bff;
+    --chat-button-hover: #5a6aef;
+    --glow-color: #0f1419;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 /* h1, h2, h3, h4, h5, h6, p, a, img, div:hover {
     transform: rotate(5deg) scale(1.3);
 } */
 
 h1, h2, h3, h4, h5, h6, p, a, span, li {
     font-family: Manrope;
+    color: var(--text-color);
 }
 
 /* body {
@@ -75,15 +118,27 @@ header h1 {
     margin: 0 0em;
     font-size: 6em;
     margin-bottom: 0em;
-    font-weight: 900;
-    font-family: Liebeheide;
-    /* text-transform: uppercase; */
-    /* letter-spacing: -4.4px; */
-    /* background-image: linear-gradient(45deg, rgb(45, 194, 208), rgb(10, 126, 113)); */
-    /* color: transparent; */
+    font-weight: 700;
+    font-family: 'Amatic SC', cursive;
+    background: linear-gradient(45deg, #46c7e1, #313fc9);
+    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     transition: 0.25s ease-out;
     display: inline-block;
+    letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] header h1 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    background: linear-gradient(45deg, #5ed4ff, #4a5bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(70, 199, 225, 0.4);
 }
 
 .top-bar {
@@ -97,11 +152,28 @@ header h1 {
 
 
 .top-bar h1 {
-    font-family: Liebeheide;
+    font-family: 'Amatic SC', cursive;
     font-size: 3em;
+    font-weight: 700;
     display: inline;
     transition: 0.25s linear;
+    background: linear-gradient(45deg, #46c7e1, #313fc9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.05em;
     /* padding: 0.2em 0.5em; */
+}
+
+[data-theme="dark"] .top-bar h1 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    background: linear-gradient(45deg, #5ed4ff, #4a5bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .top-bar h1:hover {
@@ -269,7 +341,7 @@ h4 {
 }
 
 .portfolio-description {
-    color: #777;
+    color: var(--text-light);
     font-size: 0.8em;
 }
 
@@ -290,11 +362,11 @@ h4 {
     position: sticky;
     top: 20;
     /* background-color: white; */
-    text-shadow: 0px 0px 5px white, 
-    0px 0px 15px white, 
-    0px 0px 25px white, 
-    0px 0px 35px white, 
-    0px 0px 45px white;
+    text-shadow: 0px 0px 5px var(--glow-color), 
+    0px 0px 15px var(--glow-color), 
+    0px 0px 25px var(--glow-color), 
+    0px 0px 35px var(--glow-color), 
+    0px 0px 45px var(--glow-color);
     z-index: 1; /* Ensure it stays above other content */
 }
 
@@ -302,7 +374,7 @@ h4 {
     font-size: 1.1em;
     letter-spacing: 0.8px;
     line-height: 1.5em;
-    color: #222;
+    color: var(--text-secondary);
     font-weight: 300;
     margin: 20 0 0 0; /* IS THIS THE RIGHT PLACE TO ADD THE SPACE BETWEEN HEADER AND PARAGRAPH */
 }
@@ -416,9 +488,9 @@ h4 {
 }
 
 .footer {
-    background: #f8f9fa;
+    background: var(--footer-bg);
     padding: 10px;
-    color: #333;    
+    color: var(--text-secondary);    
     font-family: Poppins;
     font-weight: 300;
     /* position: fixed;
@@ -465,7 +537,7 @@ h4 {
     padding-right: 0em;
     z-index: 10;
     position: relative;
-    background-color: #ffffff;
+    background-color: var(--bg-color);
     font-family: Montserrat;
     text-transform: uppercase;
     font-weight: 400;
@@ -625,34 +697,23 @@ h4 {
 } */
 
 .chat button {
-    /* background: linear-gradient(45deg, #46c7e1, #313fc9); */
-    /* background-color: #313fc9; */
-    /* background: linear-gradient(45deg,  var(--left1) 0%, var(--left1) 30%, var(--right1) 100%); */
-    /* background-color: #313fc9; */
     padding: 13px 20px;
-    color: #1c2ed0;
-    border: 1.5px solid #1c2ed0;
+    color: var(--chat-button-color);
+    border: 1.5px solid var(--chat-button-color);
     border-radius: 20px;
     font-size: 1.1em;
     cursor: pointer;
     font-family: Manrope;
     letter-spacing: 1.2px;
     font-weight: 400;
-    /* opacity: 0.3; */
     transition: 0.2s ease-in;
-    background-color: white;
+    background-color: var(--chat-button-bg);
     animation: expand 500ms ease-out;
 }
 
 .chat button:hover {
-    background-color: #4f5ddd;
+    background-color: var(--chat-button-hover);
     color: white;
-    /* --myColor1: red;
-    --myColor2: rgb(86, 101, 236); */
-    /* background: linear-gradient(45deg,  var(--left2) 0%, var(--left2) 30%, var(--right2) 100%); */
-    /* background: linear-gradient(45deg,  #4151df 0%, #4452d4 30%,rgb(86, 101, 236) 100%); */
-    /* background: linear-gradient(45deg,  #313fc9 0%, #5361dc 30%, #46c7e1 100%);  */
-    /* linear-gradient(45deg, #46c7e1, #313fc9); */
 }
 
 @media screen and (max-width: 1060px) {
@@ -689,7 +750,7 @@ h4 {
     width: 100%;
     max-width: 400px;
     right: 0;
-    background-color: white;
+    background-color: var(--chat-bg);
     z-index: 100;
     transition: 0.2s ease-out;
     overflow: auto;
@@ -763,12 +824,11 @@ h4 {
 }
 
 .chat-input {
-    border: 1px solid #333;
+    border: 1px solid var(--chat-border);
     width: 100%;
     padding: 10px 20px 10px 20px;
-    /* background: rgba(255, 255, 255, 1); */
-    /* text-transform: lowercase; */
-    color: #111;
+    background: var(--chat-bg);
+    color: var(--text-color);
     font-size: 1.1em;
     font-family: Manrope;
     border-radius: 1000px;
@@ -784,11 +844,11 @@ h4 {
     box-sizing: border-box;
     max-width: 500px;
     /* background-color: white; */
-    text-shadow: 0px 0px 5px white, 
-    0px 0px 15px white, 
-    0px 0px 25px white, 
-    0px 0px 35px white, 
-    0px 0px 45px white;
+    text-shadow: 0px 0px 5px var(--glow-color), 
+    0px 0px 15px var(--glow-color), 
+    0px 0px 25px var(--glow-color), 
+    0px 0px 35px var(--glow-color), 
+    0px 0px 45px var(--glow-color);
     /* padding-top: 10px; */
     transition: 0.2s linear;
 }
@@ -837,4 +897,98 @@ h4 {
 .gdoc-iframe {
     border: 1px solid #9a9a9a;
     border-radius: 10px;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px var(--shadow-hover);
+}
+
+.theme-toggle::before {
+    content: '🌙';
+    font-size: 1.5em;
+}
+
+[data-theme="dark"] .theme-toggle::before {
+    content: '☀️';
+}
+
+/* Starfield for dark mode */
+.starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+[data-theme="dark"] .starfield {
+    opacity: 1;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 4s ease-in-out infinite;
+}
+
+.star.small {
+    width: 1px;
+    height: 1px;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+}
+
+.star.medium {
+    width: 2px;
+    height: 2px;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}
+
+.star.large {
+    width: 3px;
+    height: 3px;
+    box-shadow: 0 0 9px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes drift {
+    0% { transform: translateX(0px) translateY(0px); }
+    25% { transform: translateX(2px) translateY(-1px); }
+    50% { transform: translateX(-1px) translateY(1px); }
+    75% { transform: translateX(1px) translateY(2px); }
+    100% { transform: translateX(0px) translateY(0px); }
+}
+
+.star.drifting {
+    animation: twinkle 4s ease-in-out infinite, drift 20s linear infinite;
 }
