@@ -29,7 +29,7 @@ html {
     --footer-bg: #f8f9fa;
     --chat-bg: #ffffff;
     --chat-border: #333333;
-    --chat-button-bg: #ffffff;
+    --chat-button-bg: var(--bg-color);
     --chat-button-color: #1c2ed0;
     --chat-button-hover: #4f5ddd;
     --glow-color: white;
@@ -47,7 +47,7 @@ html {
     --footer-bg: #1a1a1a;
     --chat-bg: #1a1a1a;
     --chat-border: #555555;
-    --chat-button-bg: #1a1a1a;
+    --chat-button-bg: var(--bg-color);
     --chat-button-color: #6b7bff;
     --chat-button-hover: #5a6aef;
     --glow-color: #0f1419;
@@ -657,6 +657,7 @@ h4 {
     /* justify-content: ; */
     /* margin: 3em 3em auto auto; */
     width: 100%;
+    z-index: 1001;
 }
 
 
