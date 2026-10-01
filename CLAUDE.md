@@ -25,6 +25,7 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 │   ├── brilliant.html
 │   ├── kindness.html
 │   ├── motorex.html
+│   ├── samaya.html          # Hero case study (custom sections, js/samaya.js)
 │   ├── salesforce.html
 │   ├── snowday.html
 │   ├── sust.html

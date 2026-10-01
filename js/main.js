@@ -14,8 +14,16 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    // Email is assembled at runtime so the address never appears in the page source
+    document.querySelectorAll('[data-user][data-domain]').forEach(function (a) {
+        var addr = a.dataset.user + '\u0040' + a.dataset.domain;
+        a.href = 'mailto:' + addr;
+        a.textContent = addr;
+    });
+
     // Only play videos while they're on screen
-    var videos = document.querySelectorAll('video');
+    // (the Samaya chapter stage manages its own playback)
+    var videos = Array.prototype.filter.call(document.querySelectorAll('video'), function (v) { return !v.closest('.stage-frame'); });
     videos.forEach(function (v) {
         v.muted = true;
         v.setAttribute('playsinline', '');
@@ -219,7 +227,6 @@
             gsap.timeline({ defaults: { ease: EXPO } })
                 .from(meshWrap, { scale: 1.25, autoAlpha: 0, duration: 2.6 }, 0)
                 .from(chars, { yPercent: 115, rotate: 5, transformOrigin: '0% 100%', duration: 1.5, stagger: 0.028 }, 0.25)
-                .fromTo(foot, { '--rule': 0 }, { '--rule': 1, duration: 1.6, ease: 'expo.inOut' }, 0.7)
                 .from(footBits, { y: 24, autoAlpha: 0, duration: 1.2, stagger: 0.1 }, 1.0)
                 .from(navItems, { y: -16, autoAlpha: 0, duration: 1, stagger: 0.06 }, 1.1);
         }
