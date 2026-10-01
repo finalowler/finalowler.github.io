@@ -1,5 +1,5 @@
 // Samaya launch film: a looping, code-native piece with a cinematic, unhurried cut.
-// A calm, curious film: the ask → drifting through data → reasoning → the answer → always on → title.
+// A calm, curious film: the ask → drifting through data → it gathers into an answer → always on → title.
 // Plays in the homepage tile; pauses offscreen; shows a still lockup under reduced motion.
 (function () {
     var film = document.querySelector('.sx-film');
@@ -33,17 +33,12 @@
     // Canvas renderer: one surface, several modes, driven by the timeline
     // -----------------------------------------------------------------
 
-    var S = { mode: 'none', speed: 1, pan: 0, zoom: 1, formP: 0, solid: 0, fade: 1 };
+    var S = { mode: 'none', speed: 1, gather: 0, zoom: 1, formP: 0, solid: 0, fade: 1 };
     var last = performance.now(), clock = 0;
 
     // Warp: data rushing at the camera
     var stars = [];
     for (var i = 0; i < 900; i++) stars.push({ x: rand() * 2 - 1, y: rand() * 2 - 1, z: rand() });
-
-    // Streams: the four stages of reasoning, whipping past
-    var LANES = [300, 420, 540, 660];
-    var streams = [];
-    for (i = 0; i < 1100; i++) streams.push({ lane: i % 4, seed: rand(), speed: 0.6 + rand() * 0.9, size: rand() < 0.1 ? 3 : 1.8 });
 
     // Chart: a live price walk across the full frame
     var noise = (function (seed) { return function () { seed = (seed * 48271) % 2147483647; return seed / 2147483647 - 0.5; }; })(5);
@@ -105,29 +100,21 @@
                 var z0 = s.z;
                 s.z -= dt * 0.5 * S.speed;
                 if (s.z <= 0.03) { s.z = 1; s.x = rand() * 2 - 1; s.y = rand() * 2 - 1; continue; }
-                var x1 = 1050 + (s.x / z0) * 520, y1 = 450 + (s.y / z0) * 300;
-                var x2 = 1050 + (s.x / s.z) * 520, y2 = 450 + (s.y / s.z) * 300;
-                var a = Math.min(1, (1 - s.z) * 1.4);
+                var g = 1 - S.gather;
+                var x1 = 1050 + (s.x / z0) * 520 * g, y1 = 450 + (s.y / z0) * 300 * g;
+                var x2 = 1050 + (s.x / s.z) * 520 * g, y2 = 450 + (s.y / s.z) * 300 * g;
+                var a = Math.min(1, (1 - s.z) * 1.4) * (1 - S.gather * 0.5);
                 ctx.strokeStyle = 'rgba(' + (k % 5 ? '150,175,255' : '255,255,255') + ',' + a.toFixed(3) + ')';
                 ctx.lineWidth = (1 - s.z) * 3.2;
                 ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
             }
-        }
-
-        if (S.mode === 'streams') {
-            ctx.globalCompositeOperation = 'lighter';
-            ctx.translate(S.pan, 0);
-            for (k = 0; k < streams.length; k++) {
-                var p = streams[k];
-                var f = (p.seed * 3.7 + clock * 0.28 * p.speed) % 1;
-                var x = -200 + f * 2500;
-                var y = LANES[p.lane] + Math.sin(x * 0.008 + p.seed * 12 + clock * 0.9) * 10;
-                var len = 40 + p.speed * 60;
-                var hue = p.lane === 0 ? '120,150,255' : p.lane === 1 ? '170,140,255' : p.lane === 2 ? '110,200,255' : '210,220,255';
-                ctx.fillStyle = 'rgba(' + hue + ',0.14)';
-                ctx.fillRect(x - len - 4, y - 4, len + 8, p.size + 8);
-                ctx.fillStyle = 'rgba(' + hue + ',0.95)';
-                ctx.fillRect(x - len, y, len, p.size);
+            if (S.gather > 0) {
+                var glow = ctx.createRadialGradient(1050, 450, 0, 1050, 450, 260 * S.gather + 1);
+                glow.addColorStop(0, 'rgba(255,255,255,' + (0.9 * S.gather).toFixed(3) + ')');
+                glow.addColorStop(0.25, 'rgba(140,165,255,' + (0.45 * S.gather).toFixed(3) + ')');
+                glow.addColorStop(1, 'rgba(61,90,254,0)');
+                ctx.fillStyle = glow;
+                ctx.fillRect(0, 0, W, H);
             }
         }
 
@@ -229,12 +216,6 @@
         .set(bars, { height: 0 }, 0);
 
     // A calm, curious cut: slow camera drifts and soft dissolves between shots
-    function dissolveTo(at, mode, inDur) {
-        tl.to(canvas, { opacity: 0, duration: 0.5, ease: 'sine.inOut' }, at - 0.5)
-            .call(cut(mode), null, at)
-            .to(canvas, { opacity: 1, duration: inDur || 0.8, ease: 'sine.inOut' }, at);
-    }
-
     // The ask: the camera eases back from a soft close-up as the prompt is written
     tl.set(ask, { autoAlpha: 0 }, 0)
         .to(ask, { autoAlpha: 1, duration: 0.8, ease: 'sine.out' }, 0.2)
@@ -251,39 +232,38 @@
         .fromTo(S, { speed: 1.3 }, { speed: 0.3, duration: 2.8, ease: 'power2.out', immediateRender: false }, 4.3)
         .fromTo(canvas, { scale: 1.06 }, { scale: 1, duration: 2.8, ease: 'sine.out', immediateRender: false }, 4.3);
 
-    // Reasoning: four streams glide past
-    dissolveTo(7.2, 'streams');
-    tl.fromTo(S, { pan: 180 }, { pan: -180, duration: 2.4, ease: 'none', immediateRender: false }, 7.2);
+    // Everything it read gathers into one point of light
+    tl.fromTo(S, { gather: 0 }, { gather: 1, duration: 1.6, ease: 'power2.inOut', immediateRender: false }, 6.0);
 
     // The answer, counted unhurried
-    tl.to(canvas, { opacity: 0, duration: 0.5, ease: 'sine.inOut' }, 9.3)
-        .call(cut('none'), null, 9.8)
-        .set(canvas, { opacity: 1 }, 9.8)
-        .fromTo(num, { autoAlpha: 0, scale: 1.08 }, { autoAlpha: 1, scale: 1, duration: 2.2, ease: 'power2.out', immediateRender: false }, 9.7)
-        .fromTo(counted, { v: 0 }, { v: 606.4, duration: 1.8, ease: 'power2.out', immediateRender: false, onUpdate: function () { digits.textContent = '$' + counted.v.toFixed(1) + 'B'; } }, 9.8)
-        .to(num, { autoAlpha: 0, duration: 0.6, ease: 'sine.inOut' }, 11.9);
+    tl.to(canvas, { opacity: 0, duration: 0.5, ease: 'sine.inOut' }, 7.00)
+        .call(cut('none'), null, 7.50)
+        .set(canvas, { opacity: 1 }, 7.50)
+        .fromTo(num, { autoAlpha: 0, scale: 0.6, filter: 'blur(14px)' }, { autoAlpha: 1, scale: 1, filter: 'blur(0px)', duration: 2.0, ease: 'power3.out', immediateRender: false }, 7.25)
+        .fromTo(counted, { v: 0 }, { v: 606.4, duration: 1.8, ease: 'power2.out', immediateRender: false, onUpdate: function () { digits.textContent = '$' + counted.v.toFixed(1) + 'B'; } }, 7.50)
+        .to(num, { autoAlpha: 0, duration: 0.6, ease: 'sine.inOut' }, 9.60);
 
     // Always on: the market keeps moving, and the agent keeps watching
-    tl.set(canvas, { opacity: 0 }, 12.4)
-        .call(cut('chart'), null, 12.4)
-        .to(canvas, { opacity: 1, duration: 0.8, ease: 'sine.inOut' }, 12.4)
-        .fromTo(S, { zoom: 1.45 }, { zoom: 1.12, duration: 2.6, ease: 'sine.inOut', immediateRender: false }, 12.4)
-        .call(function () { rings.push({ r: 0, a: 1 }); }, null, 13.6)
-        .to(canvas, { opacity: 0, duration: 0.7, ease: 'sine.inOut' }, 14.6)
-        .call(cut('none'), null, 15.3)
-        .set(canvas, { opacity: 1 }, 15.3);
+    tl.set(canvas, { opacity: 0 }, 10.10)
+        .call(cut('chart'), null, 10.10)
+        .to(canvas, { opacity: 1, duration: 0.8, ease: 'sine.inOut' }, 10.10)
+        .fromTo(S, { zoom: 1.45 }, { zoom: 1.12, duration: 2.6, ease: 'sine.inOut', immediateRender: false }, 10.10)
+        .call(function () { rings.push({ r: 0, a: 1 }); }, null, 11.30)
+        .to(canvas, { opacity: 0, duration: 0.7, ease: 'sine.inOut' }, 12.30)
+        .call(cut('none'), null, 13.00)
+        .set(canvas, { opacity: 1 }, 13.00);
 
     // The title assembles quietly, holds, and fades
-    tl.to(bars, { height: 70, duration: 1.2, ease: 'power2.inOut' }, 15.1)
-        .call(function () { S.mode = 'title'; S.formP = 0; S.solid = 0; S.fade = 1; }, null, 15.5)
-        .fromTo(S, { formP: 0 }, { formP: 1, duration: 2.4, ease: 'none', immediateRender: false }, 15.5)
-        .fromTo(flare, { xPercent: 0, opacity: 0 }, { xPercent: 260, opacity: 0.7, duration: 2.4, ease: 'sine.inOut', immediateRender: false }, 16.6)
-        .to(flare, { opacity: 0, duration: 0.6 }, 18.6)
-        .to(S, { solid: 1, duration: 1.0, ease: 'sine.out' }, 17.5)
-        .fromTo(canvas, { scale: 1.04 }, { scale: 1, duration: 4, ease: 'power2.out', immediateRender: false }, 15.5)
-        .to(S, { fade: 0, duration: 1.0, ease: 'sine.in' }, 20.0)
-        .to(bars, { height: 0, duration: 0.9, ease: 'power2.inOut' }, 20.6)
-        .call(cut('none'), null, 21.1);
+    tl.to(bars, { height: 70, duration: 1.2, ease: 'power2.inOut' }, 12.80)
+        .call(function () { S.mode = 'title'; S.formP = 0; S.solid = 0; S.fade = 1; }, null, 13.20)
+        .fromTo(S, { formP: 0 }, { formP: 1, duration: 2.4, ease: 'none', immediateRender: false }, 13.20)
+        .fromTo(flare, { xPercent: 0, opacity: 0 }, { xPercent: 260, opacity: 0.7, duration: 2.4, ease: 'sine.inOut', immediateRender: false }, 14.30)
+        .to(flare, { opacity: 0, duration: 0.6 }, 16.30)
+        .to(S, { solid: 1, duration: 1.0, ease: 'sine.out' }, 15.20)
+        .fromTo(canvas, { scale: 1.04 }, { scale: 1, duration: 4, ease: 'power2.out', immediateRender: false }, 13.20)
+        .to(S, { fade: 0, duration: 1.0, ease: 'sine.in' }, 17.70)
+        .to(bars, { height: 0, duration: 0.9, ease: 'power2.inOut' }, 18.30)
+        .call(cut('none'), null, 18.80);
 
     // Render only while the tile is visible
     var visible = false;
