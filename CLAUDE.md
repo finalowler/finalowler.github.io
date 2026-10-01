@@ -25,7 +25,7 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ├── js/salesforce-tile.js  # Slack → Salesforce posting loop in the homepage tile
 ├── js/snowday-tile.js     # Snowday phone: Ask Snowy chat loop + slow snow (homepage tile)
 ├── js/motorex-tile.js     # Motorex: hand sketch (Rough.js) fades into the real display film (homepage tile)
-├── js/brilliant-tile.js   # Brilliant: phone setup flow wakes the wall control (homepage tile)
+├── js/brilliant-tile.js   # Brilliant: phone setup flow wakes the wall control (homepage tile; img/brilliant/control.png is the official product render)
 ├── pages/                 # Individual project pages
 │   ├── brilliant.html
 │   ├── kindness.html

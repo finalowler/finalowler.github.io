@@ -2371,91 +2371,74 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
     position: absolute;
     inset: 0;
     transform-style: preserve-3d;
-    transform: scale(0.84) rotateX(6deg) rotateY(-10deg) rotateZ(1deg);
+    transform: scale(0.86) rotateX(4deg) rotateY(-8deg);
     transition: transform 1.4s var(--ease);
-    animation: sf-float 10s ease-in-out infinite alternate;
 }
 
-.project-card:hover .br-scene { transform: scale(0.88); }
+.project-card:hover .br-scene { transform: scale(0.9); }
 
-/* Warm light the scene brings into the room */
+/* Warm light that grows as the home comes together */
 .br-glow {
     position: absolute;
-    left: 120px;
-    top: 120px;
-    width: 640px;
-    height: 640px;
+    left: 90px;
+    top: 110px;
+    width: 680px;
+    height: 680px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 176, 92, 0.55) 0%, rgba(255, 140, 60, 0.18) 40%, transparent 70%);
-    opacity: 0.15;
+    background: radial-gradient(circle, rgba(255, 176, 92, 0.5) 0%, rgba(255, 140, 60, 0.16) 40%, transparent 70%);
+    opacity: 0.2;
     filter: blur(10px);
 }
 
-/* The wall-mounted Brilliant Control */
-.br-control {
-    position: absolute;
-    left: 250px;
-    top: 210px;
-    width: 340px;
-    height: 470px;
-    border-radius: 26px;
-    background: linear-gradient(160deg, #fbfaf7, #e9e6df);
-    box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+/* The real Brilliant Control, mounted with a soft shadow on the wall */
+.br-control { position: absolute; left: 150px; top: 180px; width: 560px; height: 562px; }
+
+.br-device {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(14px 22px 22px rgba(0, 0, 0, 0.45)) drop-shadow(4px 6px 6px rgba(0, 0, 0, 0.3));
 }
 
+/* Animated layer sitting exactly over the device's own screen */
 .br-panel-screen {
     position: absolute;
-    left: 26px;
-    top: 30px;
-    width: 196px;
-    height: 330px;
-    border-radius: 12px;
-    background: #141414;
+    left: 20.4%;
+    top: 16.9%;
+    width: 36.5%;
+    height: 64.9%;
+    border-radius: 6px;
+    background: #050506;
     overflow: hidden;
     font-family: -apple-system, "Helvetica Neue", sans-serif;
     color: #fff;
 }
 
-.br-panel-screen > div { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.br-sleep { color: rgba(255, 255, 255, 0.35); font-size: 20px; letter-spacing: 0.04em; }
-.br-alexa { opacity: 0; }
-.br-alexa i { width: 92px; height: 92px; border-radius: 50%; box-shadow: 0 0 0 7px #31c4f3, 0 0 40px 10px rgba(49, 196, 243, 0.5); }
-.br-home { opacity: 0; gap: 6px; }
-.br-time { font-size: 54px; font-weight: 300; letter-spacing: -0.02em; }
-.br-home span { font-size: 15px; color: rgba(255, 255, 255, 0.7); }
-.br-scene-on { margin-top: 18px; padding: 8px 14px; border-radius: 999px; background: #ee6a2c; font-style: normal; font-size: 13px; opacity: 0; }
-
-.br-cam { position: absolute; right: 30px; top: 30px; width: 80px; height: 24px; border-radius: 12px; background: #1d1d1d; }
-
-.br-slider {
+.br-panel-screen::after {
+    content: "";
     position: absolute;
-    top: 74px;
-    width: 34px;
-    height: 286px;
-    border-radius: 17px;
-    background: #dcd8d0;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+    inset: 0;
+    background: linear-gradient(118deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 30%, transparent 44%);
+    pointer-events: none;
 }
 
-.br-slider:nth-of-type(2) { right: 74px; }
-.br-slider:nth-of-type(3) { right: 30px; }
-.br-slider i { position: absolute; left: 0; right: 0; bottom: 0; height: 18%; border-radius: 17px; background: linear-gradient(#ffd6a3, #ffb15c); }
-
-.br-wordmark { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; color: #b9b4aa; font: 400 18px/1 -apple-system, sans-serif; letter-spacing: 0.04em; }
+.br-panel-screen > div { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.br-sleep { color: rgba(255, 255, 255, 0.4); font-size: 24px; letter-spacing: 0.04em; }
+.br-alexa { opacity: 0; }
+.br-alexa i { width: 104px; height: 104px; border-radius: 50%; box-shadow: 0 0 0 8px #31c4f3, 0 0 44px 12px rgba(49, 196, 243, 0.5); }
 
 /* The phone running the setup flow */
 .br-phone {
     position: absolute;
-    left: 650px;
-    top: 120px;
+    left: 760px;
+    top: 140px;
     width: 330px;
     height: 680px;
     padding: 11px;
     border-radius: 54px;
     background: linear-gradient(145deg, #3a3a3c, #121214 50%, #2c2c2e);
     box-shadow: 0 60px 110px -40px rgba(0, 0, 0, 0.9), inset 0 0 0 2px rgba(255, 255, 255, 0.12);
-    transform: translateZ(90px);
+    transform: translateZ(40px) scale(0.82);
+    transform-origin: 50% 50%;
 }
 
 .br-phone-screen {
