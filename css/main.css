@@ -2311,7 +2311,7 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
 .sd-homebar { position: absolute; left: 50%; bottom: 12px; width: 130px; height: 5px; margin-left: -65px; border-radius: 3px; background: #111; }
 
 /* ==========================================================================
-   Shimano × Motorex homepage tile: a living technical drawing
+   Shimano × Motorex homepage tile: a hand sketch that becomes the real thing
    (1200×900 stage, scaled to fit)
    ========================================================================== */
 
@@ -2325,50 +2325,198 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
 
 .mx-bg { position: absolute; inset: 0; }
 
-/* Faint drafting grid over the shader */
-.mx-grid {
+.mx-stage { position: absolute; top: 50%; left: 50%; width: 1200px; height: 900px; perspective: 2400px; }
+
+/* A sheet of sketch paper; the photo sits in exact register under the ink */
+.mx-paper {
+    position: absolute;
+    left: 220px;
+    top: 90px;
+    width: 760px;
+    height: 720px;
+    background: #fbfaf6;
+    box-shadow: 0 50px 100px -40px rgba(0, 10, 10, 0.85), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    transform: scale(0.94) rotateX(7deg) rotateY(-9deg) rotateZ(-1.5deg);
+    transition: transform 1.4s var(--ease);
+    animation: sf-float 10s ease-in-out infinite alternate;
+}
+
+.project-card:hover .mx-paper { transform: scale(0.98); }
+
+.mx-photo { position: absolute; left: 80px; top: 60px; width: 600px; height: 600px; overflow: hidden; opacity: 0; }
+.mx-photo img, .mx-photo video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.mx-sketch { position: absolute; inset: 0; width: 760px; height: 720px; overflow: visible; }
+.mx-sketch path { stroke-linecap: round; stroke-linejoin: round; }
+.mx-hand { font-family: Caveat, cursive; font-weight: 600; fill: #1d1d1f; }
+
+/* ==========================================================================
+   Brilliant Smart Home homepage tile: phone setup meets the wall control
+   (1200×900 stage, scaled to fit)
+   ========================================================================== */
+
+.br-tile {
     position: absolute;
     inset: 0;
-    background-image:
-        linear-gradient(rgba(200, 240, 235, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200, 240, 235, 0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
-    -webkit-mask-image: radial-gradient(80% 80% at 50% 50%, #000 40%, transparent 100%);
-    mask-image: radial-gradient(80% 80% at 50% 50%, #000 40%, transparent 100%);
+    overflow: hidden;
+    background: radial-gradient(120% 90% at 35% 30%, #6b3415 0%, #2a1609 50%, #120b07 100%);
+    transform: scale(calc(var(--s, 1) * var(--h, 1)));
 }
 
-.mx-stage {
+.br-bg { position: absolute; inset: 0; }
+
+.br-stage { position: absolute; top: 50%; left: 50%; width: 1200px; height: 900px; perspective: 2400px; }
+
+.br-scene {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1200px;
-    height: 900px;
-    perspective: 2400px;
-}
-
-.mx-draw {
-    width: 1200px;
-    height: 900px;
-    overflow: visible;
-    transform: translateX(-20px) scale(0.74) rotateX(6deg) rotateY(-8deg);
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: scale(0.84) rotateX(6deg) rotateY(-10deg) rotateZ(1deg);
     transition: transform 1.4s var(--ease);
+    animation: sf-float 10s ease-in-out infinite alternate;
 }
 
-.project-card:hover .mx-draw { transform: translateX(-20px) scale(0.78); }
+.project-card:hover .br-scene { transform: scale(0.88); }
 
-.mx-ink { fill: none; stroke: rgba(225, 245, 242, 0.8); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.mx-hatch { stroke: rgba(225, 245, 242, 0.25); stroke-width: 1; }
+/* Warm light the scene brings into the room */
+.br-glow {
+    position: absolute;
+    left: 120px;
+    top: 120px;
+    width: 640px;
+    height: 640px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 176, 92, 0.55) 0%, rgba(255, 140, 60, 0.18) 40%, transparent 70%);
+    opacity: 0.15;
+    filter: blur(10px);
+}
 
-.mx-logo { fill: #fff; font: 700 24px/1 var(--sans); letter-spacing: -0.01em; }
-.mx-logo-sub { fill: rgba(255, 255, 255, 0.8); font: 400 13px/1 var(--sans); }
-.mx-sign { fill: #fff; font: 600 16px/1 var(--sans); }
-.mx-step { fill: #fff; font: 600 11px/1 var(--sans); }
+/* The wall-mounted Brilliant Control */
+.br-control {
+    position: absolute;
+    left: 250px;
+    top: 210px;
+    width: 340px;
+    height: 470px;
+    border-radius: 26px;
+    background: linear-gradient(160deg, #fbfaf7, #e9e6df);
+    box-shadow: 0 50px 90px -40px rgba(0, 0, 0, 0.85), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
 
-.mx-path { fill: none; stroke: rgba(225, 245, 242, 0.6); stroke-width: 1.6; stroke-dasharray: 6 8; opacity: 0; }
+.br-panel-screen {
+    position: absolute;
+    left: 26px;
+    top: 30px;
+    width: 196px;
+    height: 330px;
+    border-radius: 12px;
+    background: #141414;
+    overflow: hidden;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    color: #fff;
+}
 
-.mx-note text, .mx-title text { fill: rgba(225, 245, 242, 0.9); font: 400 16px/1 "IBM Plex Mono", ui-monospace, monospace; }
-.mx-leader { fill: none; stroke: rgba(225, 245, 242, 0.7); stroke-width: 1.2; }
-.mx-note { opacity: 0; }
+.br-panel-screen > div { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.br-sleep { color: rgba(255, 255, 255, 0.35); font-size: 20px; letter-spacing: 0.04em; }
+.br-alexa { opacity: 0; }
+.br-alexa i { width: 92px; height: 92px; border-radius: 50%; box-shadow: 0 0 0 7px #31c4f3, 0 0 40px 10px rgba(49, 196, 243, 0.5); }
+.br-home { opacity: 0; gap: 6px; }
+.br-time { font-size: 54px; font-weight: 300; letter-spacing: -0.02em; }
+.br-home span { font-size: 15px; color: rgba(255, 255, 255, 0.7); }
+.br-scene-on { margin-top: 18px; padding: 8px 14px; border-radius: 999px; background: #ee6a2c; font-style: normal; font-size: 13px; opacity: 0; }
 
-.mx-title rect { fill: none; stroke: rgba(225, 245, 242, 0.4); stroke-width: 1.2; }
-.mx-title text { font-size: 13px; fill: rgba(225, 245, 242, 0.6); }
+.br-cam { position: absolute; right: 30px; top: 30px; width: 80px; height: 24px; border-radius: 12px; background: #1d1d1d; }
+
+.br-slider {
+    position: absolute;
+    top: 74px;
+    width: 34px;
+    height: 286px;
+    border-radius: 17px;
+    background: #dcd8d0;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+}
+
+.br-slider:nth-of-type(2) { right: 74px; }
+.br-slider:nth-of-type(3) { right: 30px; }
+.br-slider i { position: absolute; left: 0; right: 0; bottom: 0; height: 18%; border-radius: 17px; background: linear-gradient(#ffd6a3, #ffb15c); }
+
+.br-wordmark { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; color: #b9b4aa; font: 400 18px/1 -apple-system, sans-serif; letter-spacing: 0.04em; }
+
+/* The phone running the setup flow */
+.br-phone {
+    position: absolute;
+    left: 650px;
+    top: 120px;
+    width: 330px;
+    height: 680px;
+    padding: 11px;
+    border-radius: 54px;
+    background: linear-gradient(145deg, #3a3a3c, #121214 50%, #2c2c2e);
+    box-shadow: 0 60px 110px -40px rgba(0, 0, 0, 0.9), inset 0 0 0 2px rgba(255, 255, 255, 0.12);
+    transform: translateZ(90px);
+}
+
+.br-phone-screen {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 44px;
+    background: #1c1c1c;
+    font-family: -apple-system, "Helvetica Neue", sans-serif;
+    color: #fff;
+}
+
+.br-status { display: flex; justify-content: space-between; padding: 16px 26px 0; font-size: 14px; font-weight: 600; }
+.br-notch { position: absolute; left: 50%; top: 10px; width: 96px; height: 28px; margin-left: -48px; border-radius: 16px; background: #000; }
+
+.br-screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 48px;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 22px 46px;
+    text-align: center;
+    opacity: 0;
+}
+
+.br-screen[data-i="0"] { opacity: 1; }
+.br-screen header { display: flex; justify-content: space-between; width: 100%; padding: 10px 0 16px; font-size: 15px; font-weight: 600; }
+.br-lead { margin: 6px 0 12px; font-size: 13px; color: rgba(255, 255, 255, 0.7); line-height: 1.4; }
+.br-dev { font-size: 16px; margin-bottom: 14px; }
+.br-qr { width: 150px; height: 170px; border-radius: 8px; background: #f3f1ec; display: flex; align-items: center; justify-content: center; gap: 14px; }
+.br-qr i:first-child { width: 58px; height: 58px; background: repeating-conic-gradient(#222 0 25%, #f3f1ec 0 50%) 0 0 / 12px 12px; }
+.br-qr i:last-child { width: 26px; height: 120px; border-radius: 13px; background: #dcd8d0; }
+.br-small { margin: 14px 0 0; font-size: 12px; color: rgba(255, 255, 255, 0.6); line-height: 1.4; }
+
+.br-mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+.br-mid p { margin: 0; font-size: 14px; color: rgba(255, 255, 255, 0.75); line-height: 1.45; }
+.br-mid b { color: #fff; }
+
+.br-check {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: #2a2a2a;
+    box-shadow: 0 0 0 10px #242424;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.br-check svg { width: 46px; height: 46px; }
+
+.br-switch { width: 70px; height: 120px; border-radius: 10px; background: #2b2b2b; box-shadow: inset 0 0 0 2px #3a3a3a; display: flex; align-items: center; justify-content: center; }
+.br-switch i { width: 18px; height: 58px; border-radius: 4px; background: #ee6a2c; }
+
+.br-btn { margin-top: auto; width: 100%; padding: 13px 0; border-radius: 999px; background: #ee6a2c; font-size: 14px; font-weight: 600; text-transform: none; }
+.br-btn + .br-btn { margin-top: 10px; }
+.br-btn.ghost { background: #333; color: rgba(255, 255, 255, 0.85); }
+
+.br-tap { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: rgba(255, 255, 255, 0.45); opacity: 0; pointer-events: none; }
+.br-homebar { position: absolute; left: 50%; bottom: 10px; width: 110px; height: 4px; margin-left: -55px; border-radius: 2px; background: #fff; opacity: 0.8; }

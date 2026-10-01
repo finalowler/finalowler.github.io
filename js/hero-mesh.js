@@ -15,6 +15,7 @@ const presets = {
     salesforce: { colors: ['#04122e', '#0b5cab', '#4a154b', '#032d60', '#1b96ff'], swirl: 0.15, distortion: 0.4, speed: 0.15, rotation: 210, frame: 12000 },
     snowday: { colors: ['#0d1b33', '#2f5d9e', '#9cc3f0', '#1a3361', '#5d8fd0'], swirl: 0.2, distortion: 0.35, speed: 0.12, rotation: 120, frame: 30000 },
     motorex: { colors: ['#031c1c', '#0b4f4b', '#0f6f69', '#052a33', '#083e45'], swirl: 0.12, distortion: 0.3, speed: 0.1, rotation: 300, frame: 52000 },
+    brilliant: { colors: ['#120b07', '#4a2210', '#9c4a1c', '#24130a', '#6b3415'], swirl: 0.12, distortion: 0.3, speed: 0.1, rotation: 60, frame: 18000 },
     footer: { colors: ['#0a0a0b', '#5b2a86', '#ff5a1f', '#141a3a', '#e8c9a0'], swirl: 0.5, rotation: 180, frame: 64000 },
 };
 

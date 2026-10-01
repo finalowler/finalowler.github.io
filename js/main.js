@@ -22,8 +22,8 @@
     });
 
     // Only play videos while they're on screen
-    // (the Samaya chapter stage manages its own playback)
-    var videos = Array.prototype.filter.call(document.querySelectorAll('video'), function (v) { return !v.closest('.stage-frame'); });
+    // (the Samaya chapter stage and the Motorex tile manage their own playback)
+    var videos = Array.prototype.filter.call(document.querySelectorAll('video'), function (v) { return !v.closest('.stage-frame, .mx-photo'); });
     videos.forEach(function (v) {
         v.muted = true;
         v.setAttribute('playsinline', '');
