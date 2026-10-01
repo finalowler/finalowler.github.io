@@ -95,6 +95,7 @@
     var lenis = null;
     if (window.Lenis) {
         lenis = new window.Lenis({ lerp: 0.085, wheelMultiplier: 0.9 });
+        window.siteScroll = lenis;
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
         gsap.ticker.lagSmoothing(0);

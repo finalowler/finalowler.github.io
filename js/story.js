@@ -1,4 +1,4 @@
-// Samaya case study: pinned scenes and a chapter stage that swaps demos as the story scrolls.
+// Long-form case studies (Samaya, Amity): pinned scenes and a chapter stage that swaps media as the story scrolls.
 (function () {
     var root = document.documentElement;
     var gsap = window.gsap;
@@ -60,6 +60,7 @@
 
         items.forEach(function (it, k) {
             var v = it.querySelector('video');
+            if (!v) return;
             if (k === i) {
                 try { v.currentTime = 0; } catch (e) {}
                 var p = v.play();
@@ -85,7 +86,7 @@
         gsap.fromTo(inn,
             { clipPath: dir > 0 ? 'inset(100% 0% 0% 0% round 12px)' : 'inset(0% 0% 100% 0% round 12px)' },
             { clipPath: 'inset(0% 0% 0% 0% round 12px)', duration: 1.1, ease: 'expo.inOut' });
-        gsap.fromTo(inn.querySelector('video'),
+        gsap.fromTo(inn.querySelector('video, img'),
             { scale: 1.14, yPercent: 6 * dir },
             { scale: 1, yPercent: 0, duration: 1.5, ease: 'expo.out' });
 
@@ -126,15 +127,27 @@
     // Opening statement lights up word by word
     // -----------------------------------------------------------------
 
-    var statement = document.querySelector('.sm-statement');
-    if (statement) {
+    document.querySelectorAll('.sm-statement').forEach(function (statement) {
         gsap.fromTo(splitWords(statement), { opacity: 0.12 }, {
             opacity: 1,
             ease: 'none',
             stagger: 0.1,
             scrollTrigger: { trigger: statement, start: 'top 80%', end: 'bottom 45%', scrub: true },
         });
-    }
+    });
+
+    // Voices: each testimony surfaces out of a soft blur, alternating sides
+    document.querySelectorAll('.voice').forEach(function (v, i) {
+        gsap.from(v, {
+            autoAlpha: 0,
+            y: 80,
+            x: (i % 2 ? 1 : -1) * 40,
+            filter: 'blur(14px)',
+            duration: 1.6,
+            ease: EXPO,
+            scrollTrigger: { trigger: v, start: 'top 88%', once: true },
+        });
+    });
 
     // -----------------------------------------------------------------
     // The question: pinned while the context behind it gathers around

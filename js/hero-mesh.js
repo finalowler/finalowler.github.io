@@ -11,6 +11,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 const presets = {
     hero: { colors: ['#0a0a0b', '#ff5a1f', '#5b2a86', '#141a3a', '#2a0f2e'], swirl: 0.35, rotation: 0, frame: 20000 },
+    amity: { colors: ['#1a1030', '#6b4dff', '#ff8fd1', '#9fd3ff', '#2b1a5e'], swirl: 0.6, rotation: 40, frame: 42000 },
     footer: { colors: ['#0a0a0b', '#5b2a86', '#ff5a1f', '#141a3a', '#e8c9a0'], swirl: 0.5, rotation: 180, frame: 64000 },
 };
 
