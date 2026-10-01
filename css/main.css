@@ -2113,3 +2113,199 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
 }
 
 .sf-flyer p { margin: 0; line-height: 1.4; }
+
+/* ==========================================================================
+   Snowday AI homepage tile: the real app on a phone, over a frosty mesh
+   (1200×900 stage, scaled to fit)
+   ========================================================================== */
+
+.sd-tile {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: radial-gradient(110% 90% at 40% 20%, #2f5d9e 0%, #1a3361 50%, #0d1b33 100%);
+    transform: scale(calc(var(--s, 1) * var(--h, 1)));
+}
+
+.sd-bg, .sd-snow { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.sd-stage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+    height: 900px;
+    perspective: 2200px;
+}
+
+.sd-phone {
+    position: absolute;
+    left: 405px;
+    top: 50px;
+    width: 390px;
+    height: 800px;
+    padding: 12px;
+    border-radius: 64px;
+    background: linear-gradient(145deg, #c9c3b8, #8f8a82 40%, #d8d3ca 70%, #7d7871);
+    box-shadow: 0 60px 120px -40px rgba(0, 6, 25, 0.9), inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+    transform: scale(0.92) rotateX(8deg) rotateY(-14deg) rotateZ(3deg);
+    transition: transform 1.4s var(--ease);
+    animation: sd-float 9s ease-in-out infinite alternate;
+}
+
+.project-card:hover .sd-phone { transform: scale(0.96); }
+
+@keyframes sd-float {
+    from { translate: 0 -10px; }
+    to { translate: 0 12px; }
+}
+
+.sd-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 52px;
+    background: #f5f8fc;
+    box-shadow: 0 0 0 4px #111;
+    font-family: Nunito, -apple-system, sans-serif;
+    color: #2c3a5e;
+    text-shadow: none;
+}
+
+.sd-status { display: flex; justify-content: space-between; align-items: center; padding: 18px 30px 0; font-size: 16px; font-weight: 700; color: #111; }
+.sd-icons { font-size: 9px; letter-spacing: 2px; }
+.sd-island { position: absolute; left: 50%; top: 12px; width: 110px; height: 32px; margin-left: -55px; border-radius: 20px; background: #000; }
+
+.sd-header { display: flex; justify-content: space-between; align-items: center; padding: 26px 24px 0; }
+.sd-logo { display: flex; align-items: center; gap: 8px; }
+.sd-logo b { font-size: 26px; font-weight: 800; color: #2c3a5e; letter-spacing: -0.01em; }
+.sd-logo em { font-style: normal; font-size: 17px; font-weight: 600; color: #76a9e6; margin-left: 2px; align-self: flex-start; margin-top: 2px; }
+.sd-logo-mark { width: 34px; height: 30px; flex-shrink: 0; }
+.sd-menu { display: grid; gap: 5px; }
+.sd-menu i { display: block; width: 22px; height: 2.5px; border-radius: 2px; background: #2c3a5e; }
+
+.sd-home { padding: 18px 22px 0; }
+
+.sd-search {
+    position: relative;
+    padding: 13px 18px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px #d6e2f2;
+    font-size: 15px;
+    color: #6f7a92;
+}
+
+.sd-search-btn {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    width: 34px;
+    height: 34px;
+    margin-top: -17px;
+    border-radius: 50%;
+    background: #76a9e6;
+    color: #2c3a5e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.sd-home h4 { display: flex; align-items: center; gap: 8px; margin: 20px 0 12px; font-size: 19px; font-weight: 700; }
+.sd-ic { font-size: 18px; filter: hue-rotate(180deg) saturate(0.6); }
+
+.sd-row { display: flex; gap: 12px; }
+
+.sd-card {
+    flex-shrink: 0;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 0 0 1px #e3eaf4, 0 4px 14px rgba(44, 58, 94, 0.06);
+}
+
+.sd-deadline { display: flex; align-items: center; gap: 12px; width: 280px; padding: 16px 14px; }
+.sd-deadline b { display: block; font-size: 17px; font-weight: 700; }
+.sd-deadline small { display: block; font-size: 13px; color: #4a5675; margin-top: 2px; }
+.sd-deadline strong { font-style: italic; font-weight: 700; }
+.sd-org { flex-shrink: 0; width: 62px; font-size: 9px; font-weight: 800; line-height: 1.1; color: #0e6aa8; text-align: center; letter-spacing: 0.02em; }
+.sd-flakes { display: block; color: #76a9e6; font-size: 14px; letter-spacing: 3px; margin: 3px 0; }
+.sd-peek { width: 80px; }
+
+.sd-ask {
+    margin-top: 18px;
+    padding: 18px 16px;
+    border-radius: 18px;
+    background: linear-gradient(160deg, #eef4fc, #dde9f8);
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(44, 58, 94, 0.08);
+}
+
+.sd-ask b { display: block; font-size: 18px; font-weight: 700; }
+.sd-ask small { display: block; margin: 6px 0 12px; font-size: 13px; color: #4a5675; }
+.sd-ask-btns { display: flex; gap: 10px; }
+.sd-ask-btns span { flex: 1; padding: 10px 0; border-radius: 12px; background: #cfe0f6; font-size: 13px; font-weight: 600; }
+.sd-ask-btns .pri { background: #76a9e6; color: #fff; }
+
+.sd-list { width: 210px; padding: 14px; }
+.sd-list b { display: block; font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 8px; }
+.sd-list small { display: flex; align-items: center; gap: 6px; font-size: 9px; line-height: 1.3; color: #4a5675; text-transform: none; }
+.sd-face { width: 22px; height: 22px; border-radius: 50%; background: var(--c); flex-shrink: 0; }
+
+/* Chat sheet */
+.sd-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 118px;
+    bottom: 0;
+    border-radius: 26px 26px 0 0;
+    background: #fff;
+    box-shadow: 0 -10px 30px rgba(44, 58, 94, 0.12);
+    visibility: hidden; /* revealed and positioned by snowday-tile.js */
+}
+
+.sd-grab { display: block; width: 46px; height: 5px; margin: 10px auto 0; border-radius: 3px; background: #c8ccd4; }
+
+.sd-chat { position: absolute; left: 0; right: 0; top: 24px; bottom: 96px; overflow: hidden; }
+.sd-chat-inner { padding: 8px 14px 10px; }
+
+.sd-msg { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 12px; }
+.sd-msg p { margin: 0; padding: 10px 13px; border-radius: 14px; font-size: 14px; line-height: 1.38; }
+.sd-msg.bot p { background: #eef3fa; color: #2c3a5e; }
+.sd-msg.bot .sd-logo-mark { width: 26px; height: 22px; }
+.sd-msg.me { justify-content: flex-end; }
+.sd-msg.me p { max-width: 78%; background: #76a9e6; color: #fff; }
+
+.sd-typing { display: flex; gap: 5px; width: 54px; margin: 0 0 12px 34px; padding: 12px 14px; border-radius: 14px; background: #eef3fa; }
+.sd-typing span { width: 7px; height: 7px; border-radius: 50%; background: #9aa9c4; animation: sd-dot 1s ease-in-out infinite; }
+.sd-typing span:nth-child(2) { animation-delay: 0.15s; }
+.sd-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes sd-dot { 50% { transform: translateY(-4px); opacity: 0.5; } }
+
+.sd-result { padding: 14px 14px 16px; border-radius: 16px; background: #bcd6f3; }
+.sd-result b { display: block; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.sd-logos { display: flex; gap: 8px; }
+.sd-logos i { width: 32px; height: 32px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px #fff; }
+
+.sd-input {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: inset 0 0 0 1.5px #c6d8ef, 0 -12px 24px rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+    color: #8c96aa;
+}
+
+.sd-spark { color: #76a9e6; }
+.sd-mic { margin-left: auto; color: #2c3a5e; font-size: 12px; }
+.sd-homebar { position: absolute; left: 50%; bottom: 12px; width: 130px; height: 5px; margin-left: -65px; border-radius: 3px; background: #111; }
