@@ -80,9 +80,22 @@ strong { font-weight: 600; color: var(--ink); }
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding: 12px var(--gutter);
+    padding: 0 var(--gutter);
     transition: background-color 0.4s ease, -webkit-backdrop-filter 0.4s ease, backdrop-filter 0.4s ease;
 }
+
+/* Comfortable touch targets (44px tall) without changing how the links look */
+.nav-name,
+.nav-links a,
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 8px;
+    margin: 0 -8px;
+}
+
+.nav { align-items: center; }
 
 /* Over the hero the nav sits on color, so lift its contrast */
 .nav:not(.scrolled) .nav-links { color: rgba(255, 255, 255, 0.82); }
@@ -208,14 +221,13 @@ strong { font-weight: 600; color: var(--ink); }
 .hero.has-shader h1,
 .hero.has-shader h1 em { color: #fff; }
 .hero.has-shader .hero-foot p { color: rgba(255, 255, 255, 0.82); }
-.hero.has-shader .scroll-cue { color: rgba(255, 255, 255, 0.6); }
 
 @keyframes drift-a { to { transform: translate(-12vw, 10vh) scale(1.15); } }
 @keyframes drift-b { to { transform: translate(14vw, -8vh) scale(0.9); } }
 
 .hero h1 {
-    font-size: clamp(56px, 11.5vw, 200px);
-    max-width: 12ch;
+    font-size: clamp(44px, 8.4vw, 150px);
+    max-width: none;
 }
 
 .hero h1 .line {
@@ -250,30 +262,6 @@ strong { font-weight: 600; color: var(--ink); }
     margin: 0;
     max-width: 44ch;
     color: var(--ink-soft);
-}
-
-.scroll-cue {
-    flex-shrink: 0;
-    font-size: 12px;
-    color: var(--ink-faint);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.scroll-cue::before {
-    content: "";
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(var(--ink-faint), transparent);
-    animation: cue 2.4s ease-in-out infinite;
-    transform-origin: top;
-}
-
-@keyframes cue {
-    0%   { transform: scaleY(0); }
-    50%  { transform: scaleY(1); }
-    100% { transform: scaleY(1); opacity: 0; }
 }
 
 @keyframes fade { to { opacity: 1; } }
@@ -780,7 +768,6 @@ html.lenis, html.lenis body { height: auto; }
     .nav-links .hide-sm { display: none; }
 
     .hero-foot { flex-direction: column; align-items: flex-start; }
-    .scroll-cue { display: none; }
 
     .card-media { aspect-ratio: 4 / 3; }
 

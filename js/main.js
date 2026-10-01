@@ -225,7 +225,7 @@
         var chars = [];
         lines.forEach(function (l) { chars = chars.concat(split(l, 'chars')); });
         var foot = hero.querySelector('.hero-foot');
-        var footBits = foot.querySelectorAll('p, .scroll-cue');
+        var footBits = foot.querySelectorAll('p');
         var meshWrap = hero.querySelector('.hero-mesh-wrap');
         var mesh = hero.querySelector('.hero-mesh');
 
