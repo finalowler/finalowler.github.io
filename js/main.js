@@ -15,10 +15,13 @@
     onScroll();
 
     // Email is assembled at runtime so the address never appears in the page source
+    // The address stays written as "name [at] domain [dot] com" on the page and is only
+    // assembled into a real mailto link at the moment someone clicks it
     document.querySelectorAll('[data-user][data-domain]').forEach(function (a) {
-        var addr = a.dataset.user + '\u0040' + a.dataset.domain;
-        a.href = 'mailto:' + addr;
-        a.textContent = addr;
+        a.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'mailto:' + a.dataset.user + '\u0040' + a.dataset.domain;
+        });
     });
 
     // Only play videos while they're on screen
@@ -252,7 +255,7 @@
         var frame = card.querySelector('.card-media');
         var media = frame.querySelectorAll('img, video');
         openMedia(frame, frame, { scale: card.classList.contains('featured') ? 1.2 : 1.32 });
-        liftOnEnter(card.querySelector('.card-info'), card.querySelectorAll('.card-index, .card-title, .card-cta, .card-desc'), { y: 30, stagger: 0.07, start: 'top 92%' });
+        liftOnEnter(card.querySelector('.card-info'), card.querySelectorAll('.card-title, .card-cta, .card-desc'), { y: 30, stagger: 0.07, start: 'top 92%' });
 
         card.addEventListener('mouseenter', function () {
             gsap.to(frame, { '--h': 1.06, duration: 1.4, ease: EXPO });
@@ -368,7 +371,7 @@
             });
         }
         riseOnEnter(footer.querySelector('.display'), { start: 'top 80%', stagger: 0.03 });
-        liftOnEnter(footer, footer.querySelectorAll('.eyebrow, .footer-email, .footer-base'), { start: 'top 70%', stagger: 0.12, delay: 0.2 });
+        liftOnEnter(footer, footer.querySelectorAll('.footer-email, .footer-base'), { start: 'top 70%', stagger: 0.12, delay: 0.2 });
 
         // Magnetic email link
         var email = footer.querySelector('.footer-email');
