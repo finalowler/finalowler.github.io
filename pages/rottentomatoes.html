@@ -1,25 +1,43 @@
-<html>
-<head>
-    <title>Case Study: Rotten Tomatoes Mobile Redesign</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TPJ8PQ6GX"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0TPJ8PQ6GX');
-    </script>
-</head>
-<body>
-    <a class="top-bar" href="/">
-        <h1 class="top-bar">Lina Fowler</h1>
-    </a>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Case Study: Rotten Tomatoes Mobile Redesign — Lina Fowler</title>
+        <meta name="description" content="A mobile-first product rethink to improve clarity, trust, and discovery." />
+        <meta name="theme-color" content="#0a0a0b" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+        <link rel="stylesheet" href="/css/main.css">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TPJ8PQ6GX"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    <div class="container">
+        gtag('config', 'G-0TPJ8PQ6GX');
+        </script>
+    </head>
+    <body class="case">
+        <div class="grain" aria-hidden="true"></div>
+
+        <nav class="nav">
+            <a class="nav-name" href="/">Lina Fowler</a>
+            <div class="nav-links">
+                <a href="/#work">Work</a>
+                <a href="/#about">About</a>
+                <a class="hide-sm" href="/img/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+
+        <div class="container">
         <div class="project project-box">
             <div class="project-left">
-                <h3 class="hero-text">Rotten Tomatoes Mobile Redesign</h3>
+                <h1 class="hero-text">Rotten Tomatoes Mobile Redesign</h1>
                 <p>A mobile-first product rethink to improve clarity, trust, and discovery.</p>
             </div>
             <div class="project-right">
@@ -37,13 +55,13 @@
                 </div> -->
             </div>
         </div>
-        <div class="project-image project-box">
+        <div class="project-image project-box reveal">
             <img src="/img/RT_thumbnail.png" />
         </div>
         <iframe class="gdoc-iframe" src="https://docs.google.com/document/d/e/2PACX-1vTD2NH1lzIyhgRK6BVnHGSk6Y6_VhyHetqi_Sb3srqudIN8i_XaqQzRJNH28Qxup9wmGSlnhdpJw7l0/pub?embedded=true" width="100%" height="600px"></iframe>
 
         <!-- text -->
-        <div class="project-text project-box">
+        <div class="project-text project-box reveal">
             <div class="project-text-left">
                 <h3>Background</h3>
             </div>
@@ -62,7 +80,7 @@
 
 
         <!-- text -->
-        <div class="project-text project-box">
+        <div class="project-text project-box reveal">
             <div class="project-text-left">
                 <h3>Research</h3>
             </div>
@@ -79,7 +97,7 @@
         </div>
 
         <!-- text -->
-        <div class="project-text project-box">
+        <div class="project-text project-box reveal">
             <div class="project-text-left">
                 <h3>Design Strategy</h3>
             </div>
@@ -98,7 +116,7 @@
 
 
         <!-- text -->
-        <div class="project-text project-box">
+        <div class="project-text project-box reveal">
             <div class="project-text-left">
                 <h3>Design Details</h3>
             </div>
@@ -115,13 +133,26 @@
                 </p>
             </div>
         </div>
-
-
-        <div class="footer">
-            <h3>Let's Work Together</h3>
-            <p>If you have a project in mind, or would like to chat, shoot me an email at linazfowler AT gmail.com.</p>
-            <p>Copyright Lina Fowler 2025</p>
         </div>
-    </div>
-</body>
+
+        <a class="next-project" href="/pages/zerolytics.html">
+            <p class="eyebrow">Next project</p>
+            <span class="next-title">Zerolytics <span class="arrow">&rarr;</span></span>
+        </a>
+
+        <footer class="footer" id="contact">
+            <p class="eyebrow">Contact</p>
+            <h2 class="display">Let’s make<br><em>something.</em></h2>
+            <a class="footer-email" href="mailto:linazfowler@gmail.com">linazfowler@gmail.com</a>
+            <div class="footer-base">
+                <span>&copy; Lina Fowler 2026</span>
+                <div class="footer-links">
+                    <a href="/">All work</a>
+                    <a href="/img/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/js/main.js"></script>
+    </body>
 </html>

@@ -1,128 +1,82 @@
-const makeRequest = async (text) => {
-    try {
-        const response = await fetch("https://joint-sloth-smoothly.ngrok-free.app/query", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ prompt: text })
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
+(function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Nav gets a backdrop once you leave the top of the page
+    var nav = document.querySelector('.nav');
+    function onScroll() {
+        if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
     }
-};
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 
-const setup = () => {
-    const form = document.querySelector('#chat-form');
-    const input = document.querySelector('.chat-input');
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const text = input.value;
-        const headshot = document.querySelector(".headshot");
-        headshot.classList.add("hidden");
-        document.querySelector('#chat-response').textContent = "Loading...";
-        const data = await makeRequest(text);
-        const paragraph = document.querySelector('#chat-response');
-        const { answer, project } = data;
-        const regex = /\[([^\]]+)\]/g;
-        const updatedText = answer.replace(regex, (match, p1) => {
-            return `<a href="https://linafowler.com/pages/${project}"}" target="_blank">${p1}</a>`;
-        });
-        headshot.classList.remove("hidden");
-        paragraph.innerHTML = updatedText;
-    });
-};
-
-const hideModal = () => {
-    const shadow = document.querySelector(".shadow");
-    shadow.classList.add("hidden");
-    const modal = document.querySelector(".chat-modal");
-    modal.classList.add("hidden");
-}
-
-const showModal = () => {
-    const shadow = document.querySelector(".shadow");
-    shadow.classList.remove("hidden");
-    const modal = document.querySelector(".chat-modal");
-    modal.classList.remove("hidden");
-}
-
-const initTheme = () => {
-    // Check for saved theme preference or default to system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    } else if (systemDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    // Fade/rise elements in as they enter the viewport
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !reduceMotion) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+        reveals.forEach(function (el) { revealObserver.observe(el); });
     } else {
-        document.documentElement.setAttribute('data-theme', 'light');
+        reveals.forEach(function (el) { el.classList.add('in'); });
     }
-};
 
-const toggleTheme = () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-};
-
-// Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    // Only play videos while they're on screen
+    var videos = document.querySelectorAll('video');
+    videos.forEach(function (v) {
+        v.muted = true;
+        v.setAttribute('playsinline', '');
+    });
+    if ('IntersectionObserver' in window) {
+        var videoObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                var v = entry.target;
+                if (entry.isIntersecting) {
+                    var p = v.play();
+                    if (p && p.catch) p.catch(function () {});
+                } else {
+                    v.pause();
+                }
+            });
+        }, { threshold: 0.2 });
+        videos.forEach(function (v) { videoObserver.observe(v); });
     }
-});
 
-const createStarfield = () => {
-    const starfield = document.getElementById('starfield');
-    const numStars = 100;
-    
-    // Clear existing stars
-    starfield.innerHTML = '';
-    
-    for (let i = 0; i < numStars; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        
-        // Random size
-        const sizes = ['small', 'medium', 'large'];
-        const weights = [0.7, 0.25, 0.05]; // Most stars are small
-        let randomSize = Math.random();
-        let sizeClass = 'small';
-        
-        if (randomSize > weights[0]) {
-            sizeClass = randomSize > weights[0] + weights[1] ? 'large' : 'medium';
+    // Heavy hover GIFs load on first hover, not on page load
+    document.querySelectorAll('.project-card').forEach(function (card) {
+        var hover = card.querySelector('.hover-media[data-src]');
+        if (!hover) return;
+        card.addEventListener('mouseenter', function () {
+            if (hover.src) return;
+            hover.onload = function () { hover.classList.add('loaded'); };
+            hover.src = hover.dataset.src;
+        });
+    });
+
+    // Gentle parallax on homepage media
+    var media = document.querySelectorAll('.card-media');
+    if (media.length && !reduceMotion) {
+        var ticking = false;
+        function updateParallax() {
+            var vh = window.innerHeight;
+            media.forEach(function (m) {
+                var r = m.getBoundingClientRect();
+                if (r.bottom < 0 || r.top > vh) return;
+                var progress = (r.top + r.height / 2 - vh / 2) / vh; // -1 .. 1
+                m.style.setProperty('--parallax', (progress * -28).toFixed(1) + 'px');
+            });
+            ticking = false;
         }
-        
-        star.classList.add(sizeClass);
-        
-        // Random position
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        
-        // Random animation delay
-        star.style.animationDelay = Math.random() * 4 + 's';
-        
-        // Some stars drift slowly
-        if (Math.random() < 0.3) {
-            star.classList.add('drifting');
-            star.style.animationDelay = Math.random() * 20 + 's';
-        }
-        
-        starfield.appendChild(star);
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateParallax);
+            }
+        }, { passive: true });
+        updateParallax();
     }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    setup();
-    createStarfield();
-});
+})();

@@ -9,8 +9,8 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ## Architecture
 
 - **Static Site**: Pure HTML, CSS, and JavaScript - no build process required
-- **Frontend**: Vanilla JavaScript with a custom chat interface
-- **Backend**: Chat functionality connects to an external API at `joint-sloth-smoothly.ngrok-free.app`
+- **Frontend**: Vanilla JavaScript — scroll reveals, in-view video playback, and a WebGL liquid-silver hero shader
+- **Design**: Dark & cinematic — Instrument Serif + Inter (Google Fonts), near-black background, warm accent `#e8c9a0`
 - **Hosting**: GitHub Pages (finalowler.github.io)
 
 ## File Structure
@@ -19,7 +19,8 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 /
 ├── index.html              # Main portfolio landing page
 ├── css/main.css           # All styles for the site
-├── js/main.js             # JavaScript for chat functionality and interactions
+├── js/main.js             # Nav, scroll reveals, video play/pause, hover GIFs, parallax
+├── js/hero-shader.js      # WebGL liquid-silver hero (CSS glow fallback)
 ├── pages/                 # Individual project pages
 │   ├── brilliant.html
 │   ├── kindness.html
@@ -36,10 +37,10 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 
 ## Key Features
 
-1. **LinaGPT Chat Interface**: Custom modal chat system that queries an external API
-2. **Portfolio Showcase**: Organized into Digital, Physical, and Experiential sections
-3. **Project Pages**: Individual HTML pages for each portfolio project
-4. **Responsive Design**: Mobile-first approach with CSS Grid/Flexbox
+1. **Hero shader**: Molten-silver pools that react to the cursor; headline and nav use `mix-blend-mode: difference` over it
+2. **Portfolio Showcase**: Numbered project cards (wide cards and `.work-pair` pairs); heavy hover GIFs load lazily via `data-src`
+3. **Project Pages**: Shared nav/footer, `.reveal` sections, and a "Next project" link (order matches the homepage)
+4. **Responsive Design**: Breakpoint at 860px; respects `prefers-reduced-motion`
 5. **Google Analytics**: Integrated tracking
 
 ## Development
@@ -53,15 +54,10 @@ Since this is a static site, you can:
 - Use a local HTTP server: `python -m http.server 8000` or similar
 - Use Live Server extension in VS Code
 
-### Chat Functionality
-The LinaGPT feature connects to an external API. The endpoint is currently:
-`https://joint-sloth-smoothly.ngrok-free.app/query`
-
 ### Testing
 No automated tests are configured. Manual testing involves:
 - Cross-browser compatibility
 - Mobile responsiveness
-- Chat functionality
 - Link navigation between pages
 
 ## Deployment
@@ -78,8 +74,5 @@ The site is automatically deployed to GitHub Pages when changes are pushed to th
 
 ## JavaScript Architecture
 
-The main JavaScript file (`main.js`) handles:
-- Chat interface functionality
-- API requests to the external chat service
-- Modal show/hide behavior
-- DOM manipulation for chat responses
+- `main.js`: nav backdrop on scroll, IntersectionObserver reveals, play videos only while visible, lazy hover GIFs, card parallax
+- `hero-shader.js`: raw WebGL1 fragment shader; pauses offscreen, renders a single frame under reduced motion

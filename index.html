@@ -1,8 +1,15 @@
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <title>Lina Fowler</title>
-        <link rel="stylesheet" href="/css/main.css">
+        <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lina Fowler — Product Designer</title>
+        <meta name="description" content="Lina Fowler is a multidisciplinary product designer working across software, physical objects, and experiences." />
+        <meta name="theme-color" content="#0a0a0b" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+        <link rel="stylesheet" href="/css/main.css">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TPJ8PQ6GX"></script>
         <script>
@@ -14,177 +21,174 @@
         </script>
     </head>
     <body>
-        <div class="starfield" id="starfield"></div>
-        <div class="shadow hidden" onclick="hideModal();">
-        </div>
-        <div class="chat-modal hidden">
-            <div class="x" onclick="hideModal();">
-                <p>&times;</p>
+        <div class="grain" aria-hidden="true"></div>
+
+        <nav class="nav">
+            <a class="nav-name" href="/">Lina Fowler</a>
+            <div class="nav-links">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a class="hide-sm" href="/img/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+                <a href="#contact">Contact</a>
             </div>
-            <form id="chat-form">
-                <label>Chat with LinaGPT</label>
-                <div class="chat-input-container">
-                    <input class="chat-input" placeholder="I need help designing for..."/>
-                    <label>
-                        <button class="submit-button-fake">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
-                        </button>    
-                        <input type="submit" value=""/>
-                    </label>
-                    
-                </div>
-                <div class="chat-response-area">
-                    <img class="headshot hidden" src="/img/lina_headshot.jpeg"/>
-                    <p id="chat-response"></p>
-                </div>
-            </form>
-        </div>
-        <header>
-            <div class="parent">
-                <h1>Lina&nbsp;Fowler</h1>
-                <div class="description">
-                    <span href="/" class="description-text" >Design</span>
-                </div>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <canvas class="hero-shader" aria-hidden="true"></canvas>
+            <h1 class="display">
+                <span class="line"><span>Designing what</span></span>
+                <span class="line"><span><em>matters.</em></span></span>
+            </h1>
+            <div class="hero-foot">
+                <p>Multidisciplinary product designer. I cut through complexity to find the right problem, craft the right solution, and bring it to life — in software, objects, and experiences.</p>
+                <span class="scroll-cue">Selected work</span>
             </div>
         </header>
-        <div class="chat">
-            <button onclick="showModal();">✨<span class="linagpt">&nbsp;LinaGPT</span></span></button>
-        </div>
-        
-            <!-- <div class="go-down">
-                <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="53px" height="20px" viewBox="0 0 53 20" enable-background="new 0 0 53 20" xml:space="preserve">
-                    <g id="Ebene_3"></g>
-                    <g>
-                        <polygon points="43.886,16.221 42.697,17.687 26.5,4.731 10.303,17.688 9.114,16.221 26.5,2.312" fill="#666"/>
-                    </g>
-                </svg>
-            </div> -->
 
-        <div class="container">
-            <div class="intro">
-                <h2>
-                    <span class="name-sentence">I'm <span class="name">Lina Fowler</span>.</span>
-                    I'm a multidisciplinary product designer with an M.S. in Sustainability Systems, B.S. in Product Design, and B.A. in Political Science from Stanford University. 
-                </h2>
-                <h2>
-                    I cut through complexity to pinpoint the right problem, craft the right solution, and bring it to life. 
-                </h2>
+        <main>
+            <section class="work" id="work">
+                <div class="work-head">
+                    <p class="eyebrow">Selected work</p>
+                    <p class="eyebrow">2020 — Now</p>
+                </div>
 
-                <h2>
-                    I've led products from 🤔 to 💡 to 🎨 in B2B SaaS, climate tech, and AI.
-                    
-                </h2> <!--about me-->
-                <h2 id="fun">
-                    I'm also a ⛵ sailor, 🎻 soloist, and ⛏️&nbsp;silversmith.
-                </h2>
-            </div>
-            <div class="section">
-                <div class="left-side">
-                    <h3>Digital</h3>
-                    <p class="left-side-description">
-                        I strive to design elegant, intuitive systems that drive outcomes and exceed expectations.
-                        <!-- I've built everything from scrappy MVPs to polished, scalable systems. My designs secured the first pre-seed customer, drove Series B growth, and shaped AI productivity experiences showcased at Dreamforce.                     -->
-                    </p>
-                </div>
-                <div class="right-side">
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/zerolytics.html">
-                            <div class="portfolio-image-container">
-                                <img class="portfolio-image" src="/img/zerolytics_new.png"/>
-                                <img class="portfolio-image absolute on-hover" src="/img/zerolytics5.gif"/>
-                            </div>
-                            <h4>Zerolytics</h4>
-                            <p class="portfolio-description">A platform to assess the credibility of net-zero commitments.</p>
-                        </a>
+                <a class="project-card reveal" href="/pages/zerolytics.html">
+                    <div class="card-media">
+                        <img src="/img/zerolytics_new.png" alt="Zerolytics dashboard" loading="lazy">
+                        <img class="hover-media" data-src="/img/zerolytics5.gif" alt="">
                     </div>
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/salesforce.html">
-                            <img class="portfolio-image" src="https://images.squarespace-cdn.com/content/v1/5fade15db23a8537005262c9/0565a082-73f1-4b5c-b6cc-532e1664c2fb/newsalesforce.gif?format=2500w"/>
-                            <h4>Slack x Saleforce</h4>
-                            <p class="portfolio-description">A seamless sales team workflow that combines the power of Sales Cloud and Slack.</p>
-                        </a>
+                    <div class="card-info">
+                        <span class="card-index">01</span>
+                        <h2 class="card-title">Zerolytics</h2>
+                        <span class="card-cta">View case &rarr;</span>
+                        <p class="card-desc">A platform to assess the credibility of net-zero commitments.</p>
                     </div>
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/snowday.html">
-                            <video class="portfolio-image" src="/mov/snowday.mov" type=”video/mov” muted loop autoplay="autoplay"> </video >
-                            <!-- <img class="portfolio-image shrink" src="/img/snowday.png"/> -->
-                            <h4>Snowday AI</h4>
-                            <p class="portfolio-description">Personalized education guidance at every student’s fingertips.</p>
-                        </a>
-                    </div>
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/rottentomatoes.html">
-                            <img class="portfolio-image shrink" src="/img/RT_thumbnail.png"/>
-                            <h4>Case Study: Rotten Tomatoes</h4>
-                            <p class="portfolio-description">What if Rotten Tomatoes were mobile-first?</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="section">
-                <div class="left-side">
-                    <h3>Physical</h3>
-                    <p class="left-side-description">
-                        <!-- I'm driven to bring my design vision to tangible life. As a silversmith, ceramicist, and woodworker, my experiences in practical manufacturing drive the physical design process from vision to delivery. -->
-                        From ceramics to large-scale metalworking, I build objects that are intentional and meaningful in people's lives.
-                    </p>
-                </div>
-                <div class="right-side">
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/motorex.html">
-                            <div class="portfolio-image-container">
-                                <img class="portfolio-image" src="/img/motorex.png"/>
-                                <img class="portfolio-image absolute on-hover" src="/img/motorex.gif"/>
-                            </div>
-                            <h4>Shimano | Motorex</h4>
-                            <p class="portfolio-description">End-to-end design, engineering, and project management from the factory floor to the client's door. </p>
-                        </a>
-                    </div>
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/brilliant.html">
-                            <img class="portfolio-image" src="/img/brilliant_smart_home.gif"/>
-                            <h4>Brilliant Smart Home</h4>
-                            <p class="portfolio-description">Digital-physical integration to access home security from anywhere. </p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="section">
-                <div class="left-side">
-                    <h3>Experiential</h3>
-                    <p class="left-side-description">
-                        I design experiences that make people think. Then rethink.
-                    </p>
-                </div>
-                <div class="right-side">
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/kindness.html">
-                            <img class="portfolio-image" src="https://images.squarespace-cdn.com/content/v1/5fade15db23a8537005262c9/1669871664703-BE7BBF5GRWP5YG4AJHDH/Machine%2BGif.gif?format=1500w"/>
-                            <h4>Kindness Kiosk</h4>
-                            <p class="portfolio-description">A passion project vending machine where you dispense and pay forward words of appreciation. </p>
-                        </a>
-                    </div>
-                    <div class="portfolio-item">
-                        <a class="portfolio-item-link" href="/pages/sust.html">
-                            <div class="portfolio-image-container">
-                                <img class="portfolio-image" src="/img/sust.png"/>
-                                <img class="portfolio-image absolute on-hover" src="/img/sust5.gif"/>
-                            </div>
-                            <h4>Sustainability Curriculum Design</h4>
-                            <p class="portfolio-description">I designed and taught a new way of teaching sustainability. Stanford TA Award recipient, 2024.</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-                
-            </div>
-        </div>
+                </a>
 
-        <div class="footer">
-            <p>Copyright Lina Fowler 2025. Website developed by Lina Fowler.</p>
-        </div>
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+                <div class="work-pair">
+                    <a class="project-card reveal" href="/pages/salesforce.html">
+                        <div class="card-media">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5fade15db23a8537005262c9/0565a082-73f1-4b5c-b6cc-532e1664c2fb/newsalesforce.gif?format=2500w" alt="Slack and Salesforce workflow" loading="lazy">
+                        </div>
+                        <div class="card-info">
+                            <span class="card-index">02</span>
+                            <h2 class="card-title">Slack &times; Salesforce</h2>
+                            <span class="card-cta">View &rarr;</span>
+                            <p class="card-desc">A seamless sales workflow that combines the power of Sales Cloud and Slack.</p>
+                        </div>
+                    </a>
+                    <a class="project-card reveal" href="/pages/snowday.html">
+                        <div class="card-media">
+                            <video src="/img/snowday.mp4" poster="/img/snowday.png" muted loop playsinline preload="metadata"></video>
+                        </div>
+                        <div class="card-info">
+                            <span class="card-index">03</span>
+                            <h2 class="card-title">Snowday AI</h2>
+                            <span class="card-cta">View &rarr;</span>
+                            <p class="card-desc">Personalized education guidance at every student’s fingertips.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <a class="project-card reveal" href="/pages/motorex.html">
+                    <div class="card-media">
+                        <img src="/img/motorex.png" alt="Shimano and Motorex retail display" loading="lazy">
+                        <img class="hover-media" data-src="/img/motorex.gif" alt="">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-index">04</span>
+                        <h2 class="card-title">Shimano &times; Motorex</h2>
+                        <span class="card-cta">View case &rarr;</span>
+                        <p class="card-desc">End-to-end design, engineering, and project management — from the factory floor to the client’s door.</p>
+                    </div>
+                </a>
+
+                <div class="work-pair">
+                    <a class="project-card reveal" href="/pages/kindness.html">
+                        <div class="card-media">
+                            <img src="https://images.squarespace-cdn.com/content/v1/5fade15db23a8537005262c9/1669871664703-BE7BBF5GRWP5YG4AJHDH/Machine%2BGif.gif?format=1500w" alt="The Kindness Kiosk vending machine" loading="lazy">
+                        </div>
+                        <div class="card-info">
+                            <span class="card-index">05</span>
+                            <h2 class="card-title">Kindness Kiosk</h2>
+                            <span class="card-cta">View &rarr;</span>
+                            <p class="card-desc">A vending machine where you dispense — and pay forward — words of appreciation.</p>
+                        </div>
+                    </a>
+                    <a class="project-card reveal" href="/pages/brilliant.html">
+                        <div class="card-media">
+                            <img src="/img/brilliant_smart_home.gif" alt="Brilliant smart home interface" loading="lazy">
+                        </div>
+                        <div class="card-info">
+                            <span class="card-index">06</span>
+                            <h2 class="card-title">Brilliant Smart Home</h2>
+                            <span class="card-cta">View &rarr;</span>
+                            <p class="card-desc">Digital-physical integration to access home security from anywhere.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <a class="project-card reveal" href="/pages/sust.html">
+                    <div class="card-media">
+                        <img src="/img/sust.png" alt="Sustainability curriculum materials" loading="lazy">
+                        <img class="hover-media" data-src="/img/sust5.gif" alt="">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-index">07</span>
+                        <h2 class="card-title">Sustainability Curriculum</h2>
+                        <span class="card-cta">View case &rarr;</span>
+                        <p class="card-desc">I designed and taught a new way of teaching sustainability. Stanford TA Award recipient, 2024.</p>
+                    </div>
+                </a>
+
+                <a class="project-card reveal" href="/pages/rottentomatoes.html">
+                    <div class="card-media">
+                        <img src="/img/RT_thumbnail.png" alt="Rotten Tomatoes mobile concept" loading="lazy">
+                    </div>
+                    <div class="card-info">
+                        <span class="card-index">08</span>
+                        <h2 class="card-title">Rotten Tomatoes</h2>
+                        <span class="card-cta">View case &rarr;</span>
+                        <p class="card-desc">A case study: what if Rotten Tomatoes were mobile-first?</p>
+                    </div>
+                </a>
+            </section>
+
+            <section class="about" id="about">
+                <p class="eyebrow reveal">About</p>
+                <div class="about-grid">
+                    <div class="about-photo reveal">
+                        <img src="/img/lina-portrait.jpg" alt="Portrait of Lina Fowler" loading="lazy">
+                    </div>
+                    <div class="about-body reveal">
+                        <p class="about-lede">I’ve led products from 🤔 to 💡 to 🎨 in B2B SaaS, climate tech, and AI.</p>
+                        <p>I’m a multidisciplinary product designer. Whether it’s a dashboard for climate analysts, a retail display built on a factory floor, or a vending machine that dispenses kindness, I start the same way: find the right problem, then craft the right solution and bring it to life.</p>
+                        <ul class="creds">
+                            <li><span>M.S. Sustainability Systems</span><span>Stanford University</span></li>
+                            <li><span>B.S. Product Design</span><span>Stanford University</span></li>
+                            <li><span>B.A. Political Science</span><span>Stanford University</span></li>
+                        </ul>
+                        <p class="hobbies">I’m also a ⛵ sailor, 🎻 soloist, and ⛏️&nbsp;silversmith.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" id="contact">
+            <p class="eyebrow">Contact</p>
+            <h2 class="display">Let’s make<br><em>something.</em></h2>
+            <a class="footer-email" href="mailto:linazfowler@gmail.com">linazfowler@gmail.com</a>
+            <div class="footer-base">
+                <span>&copy; Lina Fowler 2026. Designed &amp; developed by Lina Fowler.</span>
+                <div class="footer-links">
+                    <a href="/img/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+                    <a href="#top" onclick="window.scrollTo({top:0});return false;">Back to top &uarr;</a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/js/hero-shader.js"></script>
         <script src="/js/main.js"></script>
     </body>
-</html>>
+</html>

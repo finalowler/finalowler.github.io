@@ -1,6 +1,14 @@
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <title>Snowday AI</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Snowday AI — Lina Fowler</title>
+        <meta name="description" content="Personalized education guidance at every student’s fingertips." />
+        <meta name="theme-color" content="#0a0a0b" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap">
         <link rel="stylesheet" href="/css/main.css">
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TPJ8PQ6GX"></script>
@@ -12,16 +20,25 @@
         gtag('config', 'G-0TPJ8PQ6GX');
         </script>
     </head>
-    <body>
-        <a class="top-bar" href="/">
-            <h1 class="top-bar">Lina Fowler</h1>
-        </a>
-        
+    <body class="case">
+        <div class="grain" aria-hidden="true"></div>
+
+        <nav class="nav">
+            <a class="nav-name" href="/">Lina Fowler</a>
+            <div class="nav-links">
+                <a href="/#work">Work</a>
+                <a href="/#about">About</a>
+                <a class="hide-sm" href="/img/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+
         <div class="container">
             <div class="project project-box">
                 <!-- main project title text -->
                 <div class="project-left">
-                    <h3 class="hero-text">Snowday AI</h3>
+                    <h1 class="hero-text">Snowday AI</h1>
                     <p>Personalized education guidance at every student’s fingertips.</p>
                 </div>
                 <div class="project-right">
@@ -40,12 +57,12 @@
                 </div>
             </div>
             <!-- video  -->
-            <div class="project-image project-box">
+            <div class="project-image project-box reveal">
                 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/21YlldA77Y8?si=" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
-                <video src="/img/snowday.mp4" type=”video/mov” muted loop autoplay="autoplay"> </video >
+                <video src="/img/snowday.mp4" muted loop autoplay playsinline> </video >
             </div>
             <!-- text  -->
-            <div class="project-text project-box">
+            <div class="project-text project-box reveal">
                 <div class="project-text-left">
                     <h3>Problem Space</h3>
                 </div>
@@ -56,7 +73,7 @@
                 </div>
             </div>
     
-            <div class="project-text project-box">
+            <div class="project-text project-box reveal">
                 <div class="project-text-left">
                     <h3>Solution</h3>
                 </div>
@@ -70,7 +87,7 @@
                 </div>
             </div>
     
-            <div class="project-text project-box">
+            <div class="project-text project-box reveal">
                 <div class="project-text-left">
                     <h3>My Role</h3>
                 </div>
@@ -87,7 +104,7 @@
                 </div>
             </div>
     
-            <div class="project-text project-box">
+            <div class="project-text project-box reveal">
                 <div class="project-text-left">
                     <h3>Design Principles</h3>
                 </div>
@@ -103,7 +120,7 @@
                 </div>
             </div>
     
-            <div class="project-text project-box">
+            <div class="project-text project-box reveal">
                 <div class="project-text-left">
                     <h3>Impact</h3>
                 </div>
@@ -115,10 +132,24 @@
             </div>
         </div>
 
-        <div class="footer">
-            <h3>Let's Work Together</h3>
-            <p>If you have a project in mind, or would like to chat, shoot me an email at linazfowler AT gmail.com.</p>
-            <p>Copyright Lina Fowler 2025</p>
-        </div>
+        <a class="next-project" href="/pages/motorex.html">
+            <p class="eyebrow">Next project</p>
+            <span class="next-title">Shimano × Motorex <span class="arrow">&rarr;</span></span>
+        </a>
+
+        <footer class="footer" id="contact">
+            <p class="eyebrow">Contact</p>
+            <h2 class="display">Let’s make<br><em>something.</em></h2>
+            <a class="footer-email" href="mailto:linazfowler@gmail.com">linazfowler@gmail.com</a>
+            <div class="footer-base">
+                <span>&copy; Lina Fowler 2026</span>
+                <div class="footer-links">
+                    <a href="/">All work</a>
+                    <a href="/img/resume.pdf" target="_blank" rel="noopener">Résumé</a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/js/main.js"></script>
     </body>
 </html>
