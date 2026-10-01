@@ -29,7 +29,6 @@
     if (!gsap || reduce) {
         film.classList.add('sx-static');
         qa('[data-text]').forEach(function (el) { el.textContent = el.dataset.text; });
-        qa('.sx-cell').forEach(function (c) { c.textContent = c.dataset.v; c.classList.add('filled'); });
         return;
     }
 
@@ -47,8 +46,10 @@
         .fromTo('.sx-grid', { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 2.4 }, 0)
         .to(ask.o, { n: ask.len, duration: 1.4, ease: 'none', onUpdate: ask.set, onStart: function () { ask.o.n = 0; ask.set(); } }, 0.3)
         .fromTo('.sx-s1 .sx-sub', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.8 }, 1.6)
-        .to('.sx-s1 .sx-ask', { scale: 0.42, y: -300, duration: 1, ease: 'expo.inOut' }, 2.6)
-        .to('.sx-s1 .sx-sub', { autoAlpha: 0, duration: 0.3 }, 2.6);
+        // Exposition only: the line fades out before the query box arrives
+        .to('.sx-s1 .sx-ask, .sx-s1 .sx-sub', { autoAlpha: 0, y: -24, duration: 0.5, ease: 'power2.in' }, 2.5)
+        .set(scenes[0], { autoAlpha: 0 }, 3.0)
+        .set('.sx-s1 .sx-ask, .sx-s1 .sx-sub', { autoAlpha: 1, y: 0 }, 3.0);
 
     // Scene 2 · The query box: a prompt is typed and sent
     tl.set(scenes[1], { autoAlpha: 1 }, 2.9)
@@ -57,7 +58,6 @@
         .to(prompt.o, { n: prompt.len, duration: 1.8, ease: 'none', onUpdate: prompt.set, onStart: function () { prompt.o.n = 0; prompt.set(); } }, 3.3)
         .fromTo('.sx-send', { scale: 1 }, { scale: 1.25, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.out' }, 5.2)
         .fromTo('.sx-beam', { xPercent: -160 }, { xPercent: 480, duration: 1.1, ease: 'power2.inOut' }, 5.3)
-        .to(scenes[0], { autoAlpha: 0, duration: 0.3 }, 5.4)
         .to('.sx-query', { y: -320, scale: 0.6, autoAlpha: 0, duration: 0.8, ease: 'expo.in' }, 5.4)
         .to('.sx-chips', { autoAlpha: 0, duration: 0.3 }, 5.4)
         .set(scenes[1], { autoAlpha: 0 }, 6.2);
@@ -123,35 +123,55 @@
         ctx.globalCompositeOperation = 'source-over';
     }
 
-    var phases = qa('.sx-phase span');
     var lanes = qa('.sx-lanes li');
     tl.set(scenes[2], { autoAlpha: 1 }, 6.0)
         .fromTo(field, { p: 0 }, { p: 1, duration: 3.8, ease: 'none', onUpdate: drawField }, 6.0)
         .fromTo(canvas, { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'none' }, 6.0)
-        .fromTo(phases, { autoAlpha: 0, y: 30 }, { autoAlpha: 0, y: 30, duration: 0.01 }, 6.0)
-        .to(phases[0], { autoAlpha: 1, y: 0, duration: 0.6 }, 6.2)
-        .to(phases[0], { autoAlpha: 0, y: -30, duration: 0.4, ease: 'power2.in' }, 7.3)
-        .to(phases[1], { autoAlpha: 1, y: 0, duration: 0.6 }, 7.5)
         .fromTo(lanes, { autoAlpha: 0, x: -30 }, { autoAlpha: 1, x: 0, stagger: 0.12, duration: 0.6 }, 7.4)
-        .to(phases[1], { autoAlpha: 0, y: -30, duration: 0.4, ease: 'power2.in' }, 8.4)
         .to(lanes, { autoAlpha: 0, x: 40, stagger: 0.05, duration: 0.4, ease: 'power2.in' }, 8.4)
-        .to(phases[2], { autoAlpha: 1, y: 0, duration: 0.6 }, 8.6)
         // The core gathers, then blooms into the answer
         .fromTo('.sx-core', { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 0.6, duration: 1.0, ease: 'power2.in' }, 8.7)
         .to('.sx-core', { scale: 6, opacity: 0, duration: 0.7, ease: 'expo.out' }, 9.7)
-        .to([canvas, phases[2]], { opacity: 0, duration: 0.3 }, 9.7)
+        .to(canvas, { opacity: 0, duration: 0.3 }, 9.7)
         .set(scenes[2], { autoAlpha: 0 }, 10.3);
 
-    // Scene 4 · The evidence table fills, citations and honest gaps included
+    // Scene 4 · The answer, as a data sculpture: glass bars rise with counting values,
+    // the missing figure stays an honest ghost, margins draw as rings, and every real
+    // number threads back to its source
+    var BASE = 640;
+    var bars = qa('.vz-bar'), caps = qa('.vz-cap'), vals = qa('.vz-val');
+    var threads = qa('.vz-thread');
+    threads.forEach(function (t) { var L = t.getTotalLength(); t.style.strokeDasharray = L; t.dataset.len = L; });
     tl.set(scenes[3], { autoAlpha: 1 }, 9.8)
-        .fromTo('.sx-tq', { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.7 }, 10.1)
-        .fromTo('.sx-table', { scale: 0.7, x: 260, autoAlpha: 0, filter: 'blur(16px)' }, { scale: 1, x: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 1.0 }, 9.85);
-    qa('.sx-cell').forEach(function (c, i) {
-        tl.call(function () { c.textContent = ''; c.classList.remove('filled'); }, null, 9.9)
-            .call(function () { c.textContent = c.dataset.v; c.classList.add('filled'); }, null, 10.5 + i * 0.12)
-            .fromTo(c, { autoAlpha: 0.3 }, { autoAlpha: 1, duration: 0.25 }, 10.5 + i * 0.12);
+        .fromTo('.sx-s4 .sx-tq', { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.7 }, 9.95)
+        .fromTo('.vz-name', { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, stagger: 0.08, duration: 0.6 }, 9.9)
+        .fromTo(threads, { strokeDashoffset: function (i, t) { return t.dataset.len; } }, { strokeDashoffset: function (i, t) { return t.dataset.len; }, duration: 0.01 }, 9.8)
+        .fromTo('.vz-cite', { autoAlpha: 0, scale: 0.6, transformOrigin: '50% 50%' }, { autoAlpha: 0, duration: 0.01 }, 9.8);
+    bars.forEach(function (b, i) {
+        var h = +b.dataset.h, at = 10.0 + i * 0.18;
+        var o = { h: 0 };
+        tl.fromTo(o, { h: 0 }, {
+            h: h, duration: 1.1, ease: 'expo.out',
+            onUpdate: function () {
+                b.setAttribute('y', BASE - o.h); b.setAttribute('height', o.h);
+                caps[i].setAttribute('y', BASE - o.h);
+                vals[i].setAttribute('y', BASE - o.h - 22);
+                vals[i].textContent = '$' + (+vals[i].dataset.v * (o.h / h)).toFixed(1) + 'B';
+            },
+        }, at);
     });
-    tl.fromTo('.sx-cite', { scale: 0 }, { scale: 1, stagger: 0.08, duration: 0.4, ease: 'back.out(3)' }, 11.8)
+    // The gap flickers like a signal that never resolves, then holds
+    tl.fromTo('.vz-ghost', { opacity: 0 }, {
+        keyframes: [{ opacity: 0.7, duration: 0.06 }, { opacity: 0.1, duration: 0.08 }, { opacity: 0.9, duration: 0.05 }, { opacity: 0.25, duration: 0.1 }, { opacity: 1, duration: 0.2 }],
+    }, 10.2)
+        .fromTo('.vz-gap, .vz-gap-sub', { autoAlpha: 0 }, { autoAlpha: 1, stagger: 0.12, duration: 0.5 }, 10.6);
+    qa('.vz-ring').forEach(function (r, i) {
+        var C = parseFloat(r.getAttribute('stroke-dasharray'));
+        tl.fromTo(r, { strokeDashoffset: C }, { strokeDashoffset: C * (1 - +r.dataset.m), duration: 0.9, ease: 'power2.out' }, 10.7 + i * 0.12);
+    });
+    tl.fromTo('.vz-margin, .vz-margin-sub', { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, stagger: 0.05, duration: 0.5 }, 10.8)
+        .to(threads, { strokeDashoffset: 0, duration: 0.8, stagger: 0.15, ease: 'power2.inOut' }, 11.4)
+        .to('.vz-cite', { autoAlpha: 1, scale: 1, stagger: 0.15, duration: 0.5, ease: 'back.out(2.5)' }, 12.0)
         .to(scenes[3], { autoAlpha: 0, y: -40, duration: 0.5, ease: 'expo.in' }, 13.2)
         .set(scenes[3], { y: 0 }, 13.8);
 
@@ -248,7 +268,6 @@
     // then solidify; one quiet line types beneath
     var form = q('.sx-form');
     var fg = form.getContext('2d');
-    var tag = typer(q('.sx-tag'));
     var dots = [], targets = null;
     var LOCK = { markX: 520, y: 430, r: 78, wordX: 640 };
     function drawLockup(c, alpha) {
@@ -314,11 +333,10 @@
         if (morph.solid > 0) drawLockup(fg, morph.solid);
     }
     tl.set(scenes[5], { autoAlpha: 1 }, 16.4)
-        .call(function () { seedDots(); morph.p = 0; morph.solid = 0; drawForm(); tag.o.n = 0; tag.set(); }, null, 16.4)
+        .call(function () { seedDots(); morph.p = 0; morph.solid = 0; drawForm(); }, null, 16.4)
         .to(morph, { p: 1, duration: 2.0, ease: 'none', onUpdate: drawForm }, 16.45)
         .to(morph, { solid: 1, duration: 0.8, ease: 'power2.out', onUpdate: drawForm }, 18.2)
         .fromTo(form, { scale: 1.04 }, { scale: 1, duration: 2.6, ease: 'expo.out' }, 16.45)
-        .to(tag.o, { n: tag.len, duration: 1.5, ease: 'none', onUpdate: tag.set }, 18.7)
         .to(scenes[5], { autoAlpha: 0, duration: 0.7, ease: 'power2.in' }, 21.2)
         .set('.sx-beam', { xPercent: -160 }, 21.9);
 
