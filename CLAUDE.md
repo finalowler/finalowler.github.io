@@ -20,7 +20,8 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ├── index.html              # Main portfolio landing page
 ├── css/main.css           # All styles for the site
 ├── js/main.js             # Nav, scroll reveals, video play/pause, hover GIFs, parallax
-├── js/hero-mesh.js        # Paper Shaders mesh-gradient hero (ES module from jsDelivr)
+├── js/hero-mesh.js        # Paper Shaders mesh gradients (hero, footer, Amity tile)
+├── js/samaya-film.js      # Code-native Samaya launch film in the homepage tile (GSAP timeline)
 ├── pages/                 # Individual project pages
 │   ├── brilliant.html
 │   ├── kindness.html
