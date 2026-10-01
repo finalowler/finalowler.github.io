@@ -1,6 +1,5 @@
 // Shimano × Motorex homepage tile: the display is sketched by hand, traced to the exact
-// geometry of the real unit, then the real thing fades up beneath the ink and plays on,
-// ending on the shelf lifting off to hang on slatwall.
+// geometry of the real unit, then the real thing fades up beneath the ink and plays on.
 (function () {
     var tile = document.querySelector('.mx-tile');
     if (!tile) return;
@@ -89,12 +88,6 @@
     add([text(472, 262, 'shelves lift off', 24), rc.path('M470 270 q-14 10 -18 22', pen)]);
     add([text(472, 448, 'height adjustable', 24), rc.path('M470 456 q-20 0 -40 -20', pen)]);
 
-    // The closing note that lands while the film shows the shelf moving
-    var finale = document.createElementNS(NS, 'g');
-    finale.appendChild(text(150, 648, 'shelves hang on standard slatwall', 30));
-    finale.appendChild(rc.path('M140 656 q160 14 330 -2', opts({ strokeWidth: 1.4 })));
-    svg.appendChild(finale);
-
     var strokes = [].slice.call(svg.querySelectorAll('path'));
     strokes.forEach(function (p) {
         var L = p.getTotalLength();
@@ -107,7 +100,6 @@
     tl.set(strokes, { strokeDashoffset: function (i, el) { return el.dataset.len; } }, 0)
         .set(texts, { opacity: 0 }, 0)
         .set(groups, { opacity: 1 }, 0)
-        .set(finale, { opacity: 1 }, 0)
         .set(photo, { opacity: 0 }, 0)
         .set(still, { opacity: 1 }, 0)
         .call(function () { video.pause(); try { video.currentTime = 0; } catch (e) {} }, null, 0);
@@ -134,11 +126,7 @@
         }, null, real + 1.4)
         .to(still, { opacity: 0, duration: 0.2 }, real + 1.5);
 
-    // As the shelf comes off in the film, the note is written beneath it
-    var fin = finale.querySelectorAll('path');
-    tl.to(finale.querySelector('text'), { opacity: 1, duration: 0.6 }, real + 5.0)
-        .to(fin, { strokeDashoffset: 0, duration: 0.7, ease: 'power1.inOut' }, real + 5.3)
-        .to([photo, finale], { opacity: 0, duration: 0.7, ease: 'sine.in' }, real + 8.0);
+    tl.to(photo, { opacity: 0, duration: 0.7, ease: 'sine.in' }, real + 8.0);
 
     if ('IntersectionObserver' in window) {
         new IntersectionObserver(function (entries) {
