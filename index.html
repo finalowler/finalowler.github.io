@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Lato:wght@400;700;900&family=Nunito:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap">
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/main.css?v=20261001c">
         <script>
         (function () {
             var d = document.documentElement;
@@ -17,7 +17,10 @@
                 d.classList.add('js');
                 setTimeout(function () { if (!window.gsap) d.classList.remove('js'); }, 3000);
             }
-            addEventListener('pagereveal', function (e) { if (e.viewTransition) d.classList.add('vt'); });
+            // An interrupted transition (resize, URL bar) rejects these promises; it's harmless, so don't let it surface
+            function quiet(vt) { if (vt) ['ready', 'finished', 'updateCallbackDone'].forEach(function (k) { if (vt[k]) vt[k].catch(function () {}); }); }
+            addEventListener('pageswap', function (e) { quiet(e.viewTransition); });
+            addEventListener('pagereveal', function (e) { if (e.viewTransition) { d.classList.add('vt'); quiet(e.viewTransition); } });
         })();
         </script>
         <!-- Google tag (gtag.js) -->
@@ -187,8 +190,8 @@
 
                     <a class="project-card reveal" href="/pages/zerolytics.html">
                         <div class="card-media" style="view-transition-name: media-zerolytics">
-                            <img src="/img/zerolytics_new.png" alt="Zerolytics dashboard" loading="lazy">
-                            <img class="hover-media" data-src="/img/zerolytics5.gif" alt="">
+                            <img src="/img/opt/zerolytics_new.jpg" alt="Zerolytics dashboard" loading="lazy">
+                            <video class="hover-media" data-src="/img/opt/zerolytics5.mp4" muted loop playsinline preload="none"></video>
                         </div>
                         <div class="card-info">
                             <h2 class="card-title" style="view-transition-name: title-zerolytics">Zerolytics</h2>
@@ -245,7 +248,7 @@
                                 <div class="mx-bg" data-mesh="motorex"></div>
                                 <div class="mx-stage">
                                     <div class="mx-paper">
-                                        <div class="mx-photo"><img src="/img/motorex/first.jpg" alt=""><video src="/img/motorex/motorex.mp4" poster="/img/motorex/first.jpg" muted playsinline preload="auto"></video></div>
+                                        <div class="mx-photo"><img src="/img/motorex/first.jpg" alt=""><video data-src="/img/motorex/motorex.mp4" poster="/img/motorex/first.jpg" muted playsinline preload="none"></video></div>
                                         <svg class="mx-sketch" viewBox="-80 -60 760 720" aria-hidden="true"></svg>
                                     </div>
                                 </div>
@@ -289,8 +292,8 @@
 
                     <a class="project-card featured reveal" href="/pages/sust.html">
                         <div class="card-media" style="view-transition-name: media-sust">
-                            <img src="/img/sust.png" alt="Sustainability curriculum materials" loading="lazy">
-                            <img class="hover-media" data-src="/img/sust5.gif" alt="">
+                            <img src="/img/opt/sust.jpg" alt="Sustainability curriculum materials" loading="lazy">
+                            <video class="hover-media" data-src="/img/opt/sust5.mp4" muted loop playsinline preload="none"></video>
                         </div>
                         <div class="card-info">
                             <h2 class="card-title" style="view-transition-name: title-sust">Sustainability Curriculum</h2>
@@ -336,14 +339,14 @@
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-        <script type="module" src="/js/hero-mesh.js"></script>
-        <script defer src="/js/main.js"></script>
-        <script defer src="/js/samaya-film.js"></script>
-        <script defer src="/js/salesforce-tile.js"></script>
-        <script defer src="/js/snowday-tile.js"></script>
+        <script type="module" src="/js/hero-mesh.js?v=20261001c"></script>
+        <script defer src="/js/main.js?v=20261001c"></script>
+        <script defer src="/js/samaya-film.js?v=20261001c"></script>
+        <script defer src="/js/salesforce-tile.js?v=20261001c"></script>
+        <script defer src="/js/snowday-tile.js?v=20261001c"></script>
         <script defer src="https://unpkg.com/roughjs@4.6.6/bundled/rough.js"></script>
-        <script defer src="/js/motorex-tile.js"></script>
-        <script defer src="/js/brilliant-tile.js"></script>
-        <script type="module" src="/js/amity-metal.js"></script>
+        <script defer src="/js/motorex-tile.js?v=20261001c"></script>
+        <script defer src="/js/brilliant-tile.js?v=20261001c"></script>
+        <script type="module" src="/js/amity-metal.js?v=20261001c"></script>
     </body>
 </html>

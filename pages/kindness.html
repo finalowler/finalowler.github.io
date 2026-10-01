@@ -9,7 +9,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/main.css?v=20261001c">
         <script>
         (function () {
             var d = document.documentElement;
@@ -17,7 +17,10 @@
                 d.classList.add('js');
                 setTimeout(function () { if (!window.gsap) d.classList.remove('js'); }, 3000);
             }
-            addEventListener('pagereveal', function (e) { if (e.viewTransition) d.classList.add('vt'); });
+            // An interrupted transition (resize, URL bar) rejects these promises; it's harmless, so don't let it surface
+            function quiet(vt) { if (vt) ['ready', 'finished', 'updateCallbackDone'].forEach(function (k) { if (vt[k]) vt[k].catch(function () {}); }); }
+            addEventListener('pageswap', function (e) { quiet(e.viewTransition); });
+            addEventListener('pagereveal', function (e) { if (e.viewTransition) { d.classList.add('vt'); quiet(e.viewTransition); } });
         })();
         </script>
         <!-- Google tag (gtag.js) -->
@@ -269,9 +272,9 @@
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
         <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-        <script type="module" src="/js/hero-mesh.js"></script>
-        <script defer src="/js/main.js"></script>
-        <script defer src="/js/amity.js"></script>
-        <script type="module" src="/js/amity-metal.js"></script>
+        <script type="module" src="/js/hero-mesh.js?v=20261001c"></script>
+        <script defer src="/js/main.js?v=20261001c"></script>
+        <script defer src="/js/amity.js?v=20261001c"></script>
+        <script type="module" src="/js/amity-metal.js?v=20261001c"></script>
     </body>
 </html>

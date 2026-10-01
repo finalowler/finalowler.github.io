@@ -1,11 +1,9 @@
 // Mesh gradients (Paper Shaders, Apache-2.0) for the hero and the closing contact section.
-import {
-    ShaderMount,
-    meshGradientFragmentShader,
-    getShaderColorFromString,
-    ShaderFitOptions,
-    defaultObjectSizing,
-} from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/index.js';
+// Import only the modules we use (the package index pulls in every shader)
+import { ShaderMount } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/shader-mount.js';
+import { meshGradientFragmentShader } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/shaders/mesh-gradient.js';
+import { getShaderColorFromString } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/get-shader-color-from-string.js';
+import { ShaderFitOptions, defaultObjectSizing } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/shader-sizing.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -45,7 +43,9 @@ document.querySelectorAll('[data-mesh]').forEach((el) => {
             undefined,
             reduceMotion ? 0 : (preset.speed ?? 0.35),
             preset.frame,
-            1
+            // Soft, blurry gradients: render at 1x and cap the pixel count (tiles far lower than the hero)
+            0.5,
+            el.dataset.mesh === 'hero' || el.dataset.mesh === 'footer' ? 1600 * 900 : 700 * 525
         );
         el.closest('.hero, .footer')?.classList.add('has-shader');
     } catch (err) {

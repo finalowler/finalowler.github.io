@@ -23,6 +23,7 @@
         photo.style.opacity = 1; // the real display is the still
         return;
     }
+    if (!('IntersectionObserver' in window)) video.src = video.dataset.src;
 
     var NS = 'http://www.w3.org/2000/svg';
     var rc = window.rough.svg(svg);
@@ -132,6 +133,13 @@
         new IntersectionObserver(function (entries) {
             if (entries[0].isIntersecting) { tl.play(); } else { tl.pause(); video.pause(); }
         }, { threshold: 0.2 }).observe(tile);
+        // Fetch the film only as the tile approaches the viewport
+        new IntersectionObserver(function (entries, io) {
+            if (!entries[0].isIntersecting) return;
+            video.src = video.dataset.src;
+            video.preload = 'auto';
+            io.disconnect();
+        }, { rootMargin: '600px 0px' }).observe(tile);
     } else {
         tl.play();
     }

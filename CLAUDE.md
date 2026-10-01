@@ -82,3 +82,12 @@ The site is automatically deployed to GitHub Pages when changes are pushed to th
 
 - `main.js`: nav backdrop on scroll, IntersectionObserver reveals, play videos only while visible, lazy hover GIFs, card parallax
 - `hero-mesh.js`: mounts Paper's `ShaderMount` (pinned 0.0.81); pauses offscreen; static under reduced motion
+## Cache busting
+
+Local CSS/JS references carry a version query (`/css/main.css?v=YYYYMMDD`). Bump it in every page
+when shipping CSS/JS changes, or browsers (and GitHub Pages' 10-minute cache) may serve stale files.
+
+## Media
+
+Optimized web versions of heavy media live in `img/opt/` (MP4s for former GIFs/MOVs, right-sized JPEGs).
+Originals are kept but no longer referenced. Prefer MP4 (muted, playsinline) over GIF for anything animated.

@@ -26,7 +26,7 @@
 
     // Only play videos while they're on screen
     // (the Samaya chapter stage and the Motorex tile manage their own playback)
-    var videos = Array.prototype.filter.call(document.querySelectorAll('video'), function (v) { return !v.closest('.stage-frame, .mx-photo'); });
+    var videos = Array.prototype.filter.call(document.querySelectorAll('video'), function (v) { return !v.closest('.stage-frame, .mx-photo') && !v.classList.contains('hover-media'); });
     videos.forEach(function (v) {
         v.muted = true;
         v.setAttribute('playsinline', '');
@@ -46,15 +46,19 @@
         videos.forEach(function (v) { videoObserver.observe(v); });
     }
 
-    // Heavy hover GIFs load on first hover, not on page load
+    // Hover previews load on first hover (not on page load) and only play while hovered
     document.querySelectorAll('.project-card').forEach(function (card) {
         var hover = card.querySelector('.hover-media[data-src]');
         if (!hover) return;
         card.addEventListener('mouseenter', function () {
-            if (hover.src) return;
-            hover.onload = function () { hover.classList.add('loaded'); };
-            hover.src = hover.dataset.src;
+            if (!hover.getAttribute('src')) {
+                hover.addEventListener('loadeddata', function () { hover.classList.add('loaded'); }, { once: true });
+                hover.src = hover.dataset.src;
+            }
+            var p = hover.play();
+            if (p && p.catch) p.catch(function () {});
         });
+        card.addEventListener('mouseleave', function () { hover.pause(); });
     });
 
     function fallbackReveal() {

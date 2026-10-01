@@ -1,14 +1,10 @@
 // Mirrored chrome for the Amity card (Paper Shaders liquidMetal, Apache-2.0).
 // It drifts only slightly on its own, like a real mirror; reflections shift more when the card, the cursor, or the page moves.
-import {
-    ShaderMount,
-    liquidMetalFragmentShader,
-    LiquidMetalShapes,
-    getShaderColorFromString,
-    ShaderFitOptions,
-    defaultObjectSizing,
-    emptyPixel,
-} from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/index.js';
+import { ShaderMount } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/shader-mount.js';
+import { liquidMetalFragmentShader, LiquidMetalShapes } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/shaders/liquid-metal.js';
+import { getShaderColorFromString } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/get-shader-color-from-string.js';
+import { ShaderFitOptions, defaultObjectSizing } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/shader-sizing.js';
+import { emptyPixel } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.81/dist/empty-pixel.js';
 
 // Used on the Amity case study card faces and on its homepage tile
 const faces = document.querySelectorAll('.am-face, .am-thumb-card');
@@ -54,7 +50,9 @@ if (faces.length) {
                     },
                     undefined,
                     0,
-                    6000 + i * 2500
+                    6000 + i * 2500,
+                    1.5,
+                    900 * 600
                 ));
                 face.classList.add('has-metal');
             } catch (err) {
