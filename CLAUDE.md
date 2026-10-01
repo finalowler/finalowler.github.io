@@ -24,6 +24,7 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ├── js/samaya-film.js      # Code-native Samaya launch film in the homepage tile (GSAP timeline)
 ├── js/salesforce-tile.js  # Slack → Salesforce posting loop in the homepage tile
 ├── js/snowday-tile.js     # Snowday phone: Ask Snowy chat loop + slow snow (homepage tile)
+├── js/motorex-tile.js     # Motorex technical drawing: shelf transfers to slatwall (homepage tile)
 ├── pages/                 # Individual project pages
 │   ├── brilliant.html
 │   ├── kindness.html

@@ -14,6 +14,7 @@ const presets = {
     amity: { colors: ['#1a1030', '#6b4dff', '#ff8fd1', '#9fd3ff', '#2b1a5e'], swirl: 0.6, rotation: 40, frame: 42000 },
     salesforce: { colors: ['#04122e', '#0b5cab', '#4a154b', '#032d60', '#1b96ff'], swirl: 0.15, distortion: 0.4, speed: 0.15, rotation: 210, frame: 12000 },
     snowday: { colors: ['#0d1b33', '#2f5d9e', '#9cc3f0', '#1a3361', '#5d8fd0'], swirl: 0.2, distortion: 0.35, speed: 0.12, rotation: 120, frame: 30000 },
+    motorex: { colors: ['#031c1c', '#0b4f4b', '#0f6f69', '#052a33', '#083e45'], swirl: 0.12, distortion: 0.3, speed: 0.1, rotation: 300, frame: 52000 },
     footer: { colors: ['#0a0a0b', '#5b2a86', '#ff5a1f', '#141a3a', '#e8c9a0'], swirl: 0.5, rotation: 180, frame: 64000 },
 };
 

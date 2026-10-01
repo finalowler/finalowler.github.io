@@ -2309,3 +2309,66 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
 .sd-spark { color: #76a9e6; }
 .sd-mic { margin-left: auto; color: #2c3a5e; font-size: 12px; }
 .sd-homebar { position: absolute; left: 50%; bottom: 12px; width: 130px; height: 5px; margin-left: -65px; border-radius: 3px; background: #111; }
+
+/* ==========================================================================
+   Shimano × Motorex homepage tile: a living technical drawing
+   (1200×900 stage, scaled to fit)
+   ========================================================================== */
+
+.mx-tile {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: radial-gradient(120% 90% at 30% 20%, #0f6f69 0%, #0b4f4b 40%, #031c1c 100%);
+    transform: scale(calc(var(--s, 1) * var(--h, 1)));
+}
+
+.mx-bg { position: absolute; inset: 0; }
+
+/* Faint drafting grid over the shader */
+.mx-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(200, 240, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 240, 235, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(80% 80% at 50% 50%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(80% 80% at 50% 50%, #000 40%, transparent 100%);
+}
+
+.mx-stage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+    height: 900px;
+    perspective: 2400px;
+}
+
+.mx-draw {
+    width: 1200px;
+    height: 900px;
+    overflow: visible;
+    transform: translateX(-20px) scale(0.74) rotateX(6deg) rotateY(-8deg);
+    transition: transform 1.4s var(--ease);
+}
+
+.project-card:hover .mx-draw { transform: translateX(-20px) scale(0.78); }
+
+.mx-ink { fill: none; stroke: rgba(225, 245, 242, 0.8); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.mx-hatch { stroke: rgba(225, 245, 242, 0.25); stroke-width: 1; }
+
+.mx-logo { fill: #fff; font: 700 24px/1 var(--sans); letter-spacing: -0.01em; }
+.mx-logo-sub { fill: rgba(255, 255, 255, 0.8); font: 400 13px/1 var(--sans); }
+.mx-sign { fill: #fff; font: 600 16px/1 var(--sans); }
+.mx-step { fill: #fff; font: 600 11px/1 var(--sans); }
+
+.mx-path { fill: none; stroke: rgba(225, 245, 242, 0.6); stroke-width: 1.6; stroke-dasharray: 6 8; opacity: 0; }
+
+.mx-note text, .mx-title text { fill: rgba(225, 245, 242, 0.9); font: 400 16px/1 "IBM Plex Mono", ui-monospace, monospace; }
+.mx-leader { fill: none; stroke: rgba(225, 245, 242, 0.7); stroke-width: 1.2; }
+.mx-note { opacity: 0; }
+
+.mx-title rect { fill: none; stroke: rgba(225, 245, 242, 0.4); stroke-width: 1.2; }
+.mx-title text { font-size: 13px; fill: rgba(225, 245, 242, 0.6); }
