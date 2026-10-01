@@ -42,7 +42,7 @@
 
     // Chart: a live price walk across the full frame
     var noise = (function (seed) { return function () { seed = (seed * 48271) % 2147483647; return seed / 2147483647 - 0.5; }; })(5);
-    var series = [], v = 0, rings = [];
+    var series = [], v = 0, rings = [], dip = 0;
     for (i = 0; i < 260; i++) { v += noise() * 7; series.push(v); }
 
     // Title: particles slam together into the lockup
@@ -119,7 +119,8 @@
         }
 
         if (S.mode === 'chart') {
-            v += noise() * 4.5;
+            v += noise() * 4.5 + dip;
+            dip *= 0.82;
             v += (0 - v) * 0.01;
             series.push(v); series.shift();
             // The line runs edge to edge; its leading point sits inside the frame
@@ -203,7 +204,7 @@
     var ask = q('.sx-ask'), num = q('.sx-num');
     var qtext = q('.sx-qtext'), full = qtext.dataset.text;
     var digits = q('.sx-digits');
-    var flare = q('.sx-flare');
+    var flare = q('.sx-flare'), alert = q('.sx-alert');
     var bars = qa('.sx-bar');
     var typed = { n: 0 }, counted = { v: 0 };
 
@@ -243,27 +244,31 @@
         .fromTo(counted, { v: 0 }, { v: 606.4, duration: 1.8, ease: 'power2.out', immediateRender: false, onUpdate: function () { digits.textContent = '$' + counted.v.toFixed(1) + 'B'; } }, 7.50)
         .to(num, { autoAlpha: 0, duration: 0.6, ease: 'sine.inOut' }, 9.60);
 
-    // Always on: the market keeps moving, and the agent keeps watching
+    // Always on: the market keeps moving, the line dips, and the agent's alert arrives
     tl.set(canvas, { opacity: 0 }, 10.10)
+        .set(alert, { autoAlpha: 0 }, 10.10)
         .call(cut('chart'), null, 10.10)
         .to(canvas, { opacity: 1, duration: 0.8, ease: 'sine.inOut' }, 10.10)
-        .fromTo(S, { zoom: 1.45 }, { zoom: 1.12, duration: 2.6, ease: 'sine.inOut', immediateRender: false }, 10.10)
-        .call(function () { rings.push({ r: 0, a: 1 }); }, null, 11.30)
-        .to(canvas, { opacity: 0, duration: 0.7, ease: 'sine.inOut' }, 12.30)
-        .call(cut('none'), null, 13.00)
-        .set(canvas, { opacity: 1 }, 13.00);
+        .fromTo(S, { zoom: 1.45 }, { zoom: 1.1, duration: 3.4, ease: 'sine.inOut', immediateRender: false }, 10.10)
+        .call(function () { dip = -14; }, null, 11.10)
+        .call(function () { rings.push({ r: 0, a: 1 }); }, null, 11.45)
+        .fromTo(alert, { autoAlpha: 0, y: -40, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out', immediateRender: false }, 11.6)
+        .to(alert, { autoAlpha: 0, y: -16, duration: 0.6, ease: 'sine.in' }, 13.4)
+        .to(canvas, { opacity: 0, duration: 0.7, ease: 'sine.inOut' }, 13.3)
+        .call(cut('none'), null, 14.0)
+        .set(canvas, { opacity: 1 }, 14.0);
 
     // The title assembles quietly, holds, and fades
-    tl.to(bars, { height: 70, duration: 1.2, ease: 'power2.inOut' }, 12.80)
-        .call(function () { S.mode = 'title'; S.formP = 0; S.solid = 0; S.fade = 1; }, null, 13.20)
-        .fromTo(S, { formP: 0 }, { formP: 1, duration: 2.4, ease: 'none', immediateRender: false }, 13.20)
-        .fromTo(flare, { xPercent: 0, opacity: 0 }, { xPercent: 260, opacity: 0.7, duration: 2.4, ease: 'sine.inOut', immediateRender: false }, 14.30)
-        .to(flare, { opacity: 0, duration: 0.6 }, 16.30)
-        .to(S, { solid: 1, duration: 1.0, ease: 'sine.out' }, 15.20)
-        .fromTo(canvas, { scale: 1.04 }, { scale: 1, duration: 4, ease: 'power2.out', immediateRender: false }, 13.20)
-        .to(S, { fade: 0, duration: 1.0, ease: 'sine.in' }, 17.70)
-        .to(bars, { height: 0, duration: 0.9, ease: 'power2.inOut' }, 18.30)
-        .call(cut('none'), null, 18.80);
+    tl.to(bars, { height: 70, duration: 1.2, ease: 'power2.inOut' }, 13.80)
+        .call(function () { S.mode = 'title'; S.formP = 0; S.solid = 0; S.fade = 1; }, null, 14.20)
+        .fromTo(S, { formP: 0 }, { formP: 1, duration: 2.4, ease: 'none', immediateRender: false }, 14.20)
+        .fromTo(flare, { xPercent: 0, opacity: 0 }, { xPercent: 260, opacity: 0.7, duration: 2.4, ease: 'sine.inOut', immediateRender: false }, 15.30)
+        .to(flare, { opacity: 0, duration: 0.6 }, 17.30)
+        .to(S, { solid: 1, duration: 1.0, ease: 'sine.out' }, 16.20)
+        .fromTo(canvas, { scale: 1.04 }, { scale: 1, duration: 4, ease: 'power2.out', immediateRender: false }, 14.20)
+        .to(S, { fade: 0, duration: 1.0, ease: 'sine.in' }, 18.70)
+        .to(bars, { height: 0, duration: 0.9, ease: 'power2.inOut' }, 19.30)
+        .call(cut('none'), null, 19.80);
 
     // Render only while the tile is visible
     var visible = false;

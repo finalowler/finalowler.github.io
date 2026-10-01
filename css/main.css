@@ -1731,6 +1731,43 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
 
 .sx-num-label { font-size: 26px; color: rgba(220, 228, 255, 0.6); }
 
+/* Always-on alert: a frosted notification that slides in when the line dips */
+.sx-alert {
+    position: absolute;
+    top: 150px;
+    right: 200px;
+    width: 620px;
+    display: flex;
+    gap: 24px;
+    padding: 28px 32px;
+    border-radius: 30px;
+    background: rgba(28, 36, 66, 0.62);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+    backdrop-filter: blur(28px) saturate(150%);
+    box-shadow: inset 0 0 0 1px rgba(170, 190, 255, 0.22), 0 40px 80px -30px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sx-alert-mark {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    border-radius: 18px;
+    background: #3d5afe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    font-weight: 500;
+}
+
+.sx-alert-body { flex: 1; min-width: 0; }
+.sx-alert-top { display: flex; justify-content: space-between; font-size: 22px; color: rgba(220, 228, 255, 0.65); margin-bottom: 6px; }
+.sx-alert-top b { color: #fff; font-weight: 600; }
+.sx-alert-title { margin: 0 0 4px; font-size: 28px; font-weight: 600; color: #fff; }
+.sx-alert-text { margin: 0; font-size: 24px; color: rgba(220, 228, 255, 0.75); }
+
 /* Soft passing glow and letterbox */
 .sx-flare {
     position: absolute;
