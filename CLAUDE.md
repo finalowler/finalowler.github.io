@@ -9,7 +9,7 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ## Architecture
 
 - **Static Site**: Pure HTML, CSS, and JavaScript - no build process required
-- **Frontend**: Vanilla JavaScript — scroll reveals, in-view video playback, and a WebGL liquid-silver hero shader
+- **Frontend**: Vanilla JavaScript — scroll reveals, in-view video playback, and a mesh-gradient hero (Paper Shaders)
 - **Design**: Dark & cinematic — Instrument Serif + Inter (Google Fonts), near-black background, warm accent `#e8c9a0`
 - **Hosting**: GitHub Pages (finalowler.github.io)
 
@@ -20,12 +20,11 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ├── index.html              # Main portfolio landing page
 ├── css/main.css           # All styles for the site
 ├── js/main.js             # Nav, scroll reveals, video play/pause, hover GIFs, parallax
-├── js/hero-shader.js      # WebGL liquid-silver hero (CSS glow fallback)
+├── js/hero-mesh.js        # Paper Shaders mesh-gradient hero (ES module from jsDelivr)
 ├── pages/                 # Individual project pages
 │   ├── brilliant.html
 │   ├── kindness.html
 │   ├── motorex.html
-│   ├── rottentomatoes.html
 │   ├── salesforce.html
 │   ├── snowday.html
 │   ├── sust.html
@@ -37,8 +36,8 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 
 ## Key Features
 
-1. **Hero shader**: Molten-silver pools that react to the cursor; headline and nav use `mix-blend-mode: difference` over it
-2. **Portfolio Showcase**: Numbered project cards (wide cards and `.work-pair` pairs); heavy hover GIFs load lazily via `data-src`
+1. **Hero mesh gradient**: Paper Shaders `meshGradient`, masked to fade into the page and dimmed on scroll
+2. **Portfolio Showcase**: 2-column `.work-grid` (first card `.featured` spans both); heavy hover GIFs load lazily via `data-src`
 3. **Project Pages**: Shared nav/footer, `.reveal` sections, and a "Next project" link (order matches the homepage)
 4. **Responsive Design**: Breakpoint at 860px; respects `prefers-reduced-motion`
 5. **Google Analytics**: Integrated tracking
@@ -75,4 +74,4 @@ The site is automatically deployed to GitHub Pages when changes are pushed to th
 ## JavaScript Architecture
 
 - `main.js`: nav backdrop on scroll, IntersectionObserver reveals, play videos only while visible, lazy hover GIFs, card parallax
-- `hero-shader.js`: raw WebGL1 fragment shader; pauses offscreen, renders a single frame under reduced motion
+- `hero-mesh.js`: mounts Paper's `ShaderMount` (pinned 0.0.81); pauses offscreen; static under reduced motion
