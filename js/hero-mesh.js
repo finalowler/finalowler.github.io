@@ -12,6 +12,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const presets = {
     hero: { colors: ['#0a0a0b', '#ff5a1f', '#5b2a86', '#141a3a', '#2a0f2e'], swirl: 0.35, rotation: 0, frame: 20000 },
     amity: { colors: ['#1a1030', '#6b4dff', '#ff8fd1', '#9fd3ff', '#2b1a5e'], swirl: 0.6, rotation: 40, frame: 42000 },
+    salesforce: { colors: ['#04122e', '#0b5cab', '#4a154b', '#032d60', '#1b96ff'], swirl: 0.15, distortion: 0.4, speed: 0.15, rotation: 210, frame: 12000 },
     footer: { colors: ['#0a0a0b', '#5b2a86', '#ff5a1f', '#141a3a', '#e8c9a0'], swirl: 0.5, rotation: 180, frame: 64000 },
 };
 
@@ -24,7 +25,7 @@ document.querySelectorAll('[data-mesh]').forEach((el) => {
             {
                 u_colors: preset.colors.map(getShaderColorFromString),
                 u_colorsCount: preset.colors.length,
-                u_distortion: 0.85,
+                u_distortion: preset.distortion ?? 0.85,
                 u_swirl: preset.swirl,
                 u_grainMixer: 0,
                 u_grainOverlay: 0.08,
@@ -39,7 +40,7 @@ document.querySelectorAll('[data-mesh]').forEach((el) => {
                 u_worldHeight: 0,
             },
             undefined,
-            reduceMotion ? 0 : 0.35,
+            reduceMotion ? 0 : (preset.speed ?? 0.35),
             preset.frame,
             1
         );

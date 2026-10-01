@@ -22,6 +22,7 @@ This is a personal portfolio website for Lina Fowler, a product designer. The si
 ├── js/main.js             # Nav, scroll reveals, video play/pause, hover GIFs, parallax
 ├── js/hero-mesh.js        # Paper Shaders mesh gradients (hero, footer, Amity tile)
 ├── js/samaya-film.js      # Code-native Samaya launch film in the homepage tile (GSAP timeline)
+├── js/salesforce-tile.js  # Slack → Salesforce posting loop in the homepage tile
 ├── pages/                 # Individual project pages
 │   ├── brilliant.html
 │   ├── kindness.html
