@@ -2371,11 +2371,11 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
     position: absolute;
     inset: 0;
     transform-style: preserve-3d;
-    transform: scale(0.86) rotateX(4deg) rotateY(-8deg);
+    transform: scale(0.86);
     transition: transform 1.4s var(--ease);
 }
 
-.project-card:hover .br-scene { transform: scale(0.9); }
+.project-card:hover .br-scene { transform: scale(0.89); }
 
 /* Warm light that grows as the home comes together */
 .br-glow {
@@ -2437,8 +2437,10 @@ html:not(.js) .am-deck-card { position: relative; top: auto; left: auto; transfo
     border-radius: 54px;
     background: linear-gradient(145deg, #3a3a3c, #121214 50%, #2c2c2e);
     box-shadow: 0 60px 110px -40px rgba(0, 0, 0, 0.9), inset 0 0 0 2px rgba(255, 255, 255, 0.12);
-    transform: translateZ(40px) scale(0.82);
+    /* A deliberate angle: the phone turns in toward the wall control it's setting up */
+    transform: scale(0.82) rotateY(-22deg) rotateX(6deg) rotateZ(5deg);
     transform-origin: 50% 50%;
+    box-shadow: -30px 50px 90px -30px rgba(0, 0, 0, 0.85), inset 0 0 0 2px rgba(255, 255, 255, 0.12);
 }
 
 .br-phone-screen {
