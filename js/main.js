@@ -253,7 +253,6 @@
 
     // 3 · Work: the title rises, then each card opens as it arrives
     riseOnEnter(document.querySelector('.work-title'));
-    liftOnEnter(document.querySelector('.work-head'), document.querySelectorAll('.work-count'), { delay: 0.3 });
 
     document.querySelectorAll('.project-card').forEach(function (card) {
         var frame = card.querySelector('.card-media');

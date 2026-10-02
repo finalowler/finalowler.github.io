@@ -283,8 +283,6 @@ strong { font-weight: 600; color: var(--ink); }
     margin-bottom: clamp(40px, 8vh, 96px);
 }
 
-.work-head .eyebrow { margin: 0; }
-
 .work-title { font-size: clamp(56px, 9vw, 150px); }
 
 .work-grid {
