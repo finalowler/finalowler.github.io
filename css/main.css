@@ -261,6 +261,7 @@ strong { font-weight: 600; color: var(--ink); }
 .hero-foot p {
     margin: 0;
     max-width: 44ch;
+    text-wrap: pretty;
     color: var(--ink-soft);
 }
 
